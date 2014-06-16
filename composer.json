@@ -1,0 +1,42 @@
+{
+    "name": "j7mbo/silex-auth-skeleton",
+    "type": "library",
+    "description": "Silex skeleton with already integrated login, mysql auth (doctrine), firewalls, routing, config files and auryn DiC.",
+    "keywords": ["silex","skeleton", "auth", "mysql"],
+    "homepage": "http://github.com/j7mbo/silex-auth-skeleton",
+    "license": "DBAD",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "James Mallison",
+            "email": "me@j7mbo.co.uk",
+            "homepage": "http://j7mbo.co.uk",
+            "role": "Author, Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "silex/silex": "1.1.*",
+        "cboden/Ratchet": "0.3.*",
+        "doctrine/orm": "2.5.*@dev",
+        "symfony/security": "2.3.*",
+        "symfony/yaml": "2.4.*@dev",
+        "twig/twig": ">=1.8,<2.0-dev",
+        "symfony/twig-bridge": "2.3.*",
+        "monolog/monolog": "1.6.*@dev",
+        "rdlowrey/auryn": "dev-v1.0.0-dev",
+        "ircmaxell/password-compat": "dev-master",
+        "dflydev/doctrine-orm-service-provider": "1.0.*@dev",
+        "entea/silex-twig-simple-asset-extension": "dev-master",
+        "j7mbo/torrent-php": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "App": "src/",
+            "Server": "src/"
+        }
+    }
+}

@@ -1,0 +1,60 @@
+{% if is_granted('ROLE_USER') %}
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <div class="user-menu dropdown">
+
+                {# User section (top left / top of sidebar links) #}
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="{{ asset("img/default_profile.png") }}" alt="">
+                    <div class="user-info">
+                        {{ user.username|title }} <span>{{ user.roles[0]|replace({"ROLE_":""})|title }}</span>
+                    </div>
+                </a>
+
+                {# User popout (on user section click) #}
+                <div class="popup dropdown-menu dropdown-menu-right">
+                    <div class="thumbnail">
+                        <div class="thumb">
+                            <img alt="" src="{{ asset("img/default_profile.png") }}">
+                            <div class="thumb-options">
+                                <span>
+                                    <a href="#" class="btn btn-icon btn-success"><i class="icon-pencil"></i></a>
+                                    <a href="#" class="btn btn-icon btn-success"><i class="icon-remove"></i></a>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="caption text-center">
+                            <h6>{{ user.username|title }} <small>{{ user.roles[0]|replace({"ROLE_":""})|title }}</small></h6>
+                        </div>
+                    </div>
+
+                    <ul class="list-group">
+                        <li class="list-group-item"><i class="icon-pencil3 text-muted"></i> Downloads Active <span class="label label-info">1</span></li>
+                        <li class="list-group-item"><i class="icon-people text-muted"></i> Downloads Complete <span class="label label-success">1</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            {# Sidebar links #}
+            <ul class="navigation">
+                <li class="{% if app.request.attributes.get('_route') == 'dashboard' %}active{% endif %}">
+                    <a href="{{ path('dashboard') }}"><span>Dashboard</span> <i class="icon-dashboard"></i></a>
+                </li>
+                <li class="{% if app.request.attributes.get('_route') == 'downloads' %}active{% endif %}">
+                    <a href="{{ path('downloads') }}"><span>Downloads</span> <i class="glyphicon glyphicon-download"></i></a>
+                </li>
+                <li class="{% if app.request.attributes.get('_route') == 'conversions' %}active{% endif %}">
+                    <a href="#"><span>Conversions</span> <i class="icon-wand"></i></a>
+                </li>
+                <li class="{% if app.request.attributes.get('_route') == 'files' %}active{% endif %}">
+                    <a href="#"><span>Files</span> <i class="glyphicon glyphicon-floppy-disk"></i></a>
+                </li>
+                <li class="{% if app.request.attributes.get('_route') == 'stream' %}active{% endif %}">
+                    <a href="#"><span>Stream</span> <i class="glyphicon glyphicon-film"></i></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,32 @@
+$(document).ready(function() {
+
+    /** Sidebar toggling **/
+    (function() {
+        $('.navbar').on('click', '.sidebar-toggle', function (e) {
+            e.preventDefault();
+
+            $('body').toggleClass('sidebar-narrow');
+
+            if ($('body').hasClass('sidebar-narrow')) {
+                $('.navigation').children('li').children('ul').css('display', '');
+
+                $('.sidebar-content').hide().delay().queue(function(){
+                    $(this).show().addClass('animated fadeIn').clearQueue();
+                });
+            }
+
+            else {
+                $('.navigation').children('li').children('ul').css('display', 'none');
+                $('.navigation').children('li.active').children('ul').css('display', 'block');
+
+                $('.sidebar-content').hide().delay().queue(function(){
+                    $(this).show().addClass('animated fadeIn').clearQueue();
+                });
+            }
+        });
+
+        $('body').on('click', '.offcanvas', function () {
+            $('body').toggleClass('offcanvas-active');
+        });
+    })();
+});

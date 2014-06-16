@@ -1,0 +1,78 @@
+{% set user = app.security.token.user %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+            <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css">
+            <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+            <link href="{{ asset('css/icons.css') }}" rel="stylesheet" type="text/css">
+            <link href="{{ asset('css/base.css') }}" rel="stylesheet" type="text/css">
+            {% block stylesheets %}{% endblock %}
+            {% block headerscripts %}{% endblock %}
+
+            <title>{% block title %}{% endblock %} - Seedstream</title>
+
+            {# Lazy instantiation for websocket object (websocket.js) using user id and token #}
+            {% if (is_granted('ROLE_USER')) %}
+                <script type="text/javascript">
+                    var websockets = {
+                        ws: null,
+                        use: function() {
+                            if (websockets.ws === null) {
+                                this.ws = new Websocket("ws://localhost:8080", "{{ user.id }}", "{{ user.token }}");
+                            }
+
+                            return this.ws;
+                        }
+                    };
+                </script>
+        {% endif %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+            {% if is_granted('ROLE_USER') %}
+                {% block navbar %}
+                    {% include 'components/navbar/navbar.html.twig' %}
+                {% endblock %}
+                <div class="page-container">
+                    {% block sidebar %}
+                        {% include 'components/sidebar/sidebar.html.twig' %}
+                    {% endblock %}
+                    <div class="page-content">
+                        <div class="page-content-inner">
+                            {# Header #}
+                            <div class="page-header">
+                                <div class="page-title">
+                                    <h3>
+                                        {% block header_title %}{% endblock %}
+                                        <small>Welcome {{ user.username|title }}</small>
+                                    </h3>
+
+                                </div>
+                            </div>
+                            {# Breadcrumbs #}
+                            <div class="breadcrumb-line">
+                                <ul class="breadcrumb">
+                                    <li><a href="{{ path('home') }}">Home</a></li>
+                                    {% block breadcrumbs %}{# Include breadcrumbs commponent #}{% endblock %}
+                                </ul>
+                            </div>
+                            {# Main content #}
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endblock %}
+        {% block scripts %}
+            <script src="{{ asset('js/jquery.min.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('js/base.js') }}"></script>
+            <script src="{{ asset('js/autobahn.min.js') }}"></script>
+            <script src="{{ asset('js/when.js') }}"></script>
+            <script src="{{ asset('js/websocket.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

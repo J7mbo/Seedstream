@@ -1,0 +1,13 @@
+{# Pass in an associative array of breadcrumbs [name => url] as 'crumbs' #}
+{# Url value must be the string for the route, like "dashboard", so that path("dashboard") is automatically used #}
+
+{% if crumbs is not defined %}
+    {% set crumbs = {0: {'url':'', 'name': ''}} %}
+{% endif %}
+
+{% for crumb in crumbs %}
+    <li>
+        {% set url %}{{ path(crumb['url']) }}{% endset %}
+        <a href="{{ url }}">{{ crumb['name']|title }}</a>
+    </li>
+{% endfor %}

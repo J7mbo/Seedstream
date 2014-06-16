@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Downloads{% endblock %}
+
+{% block header_title %}Downloads{% endblock %}
+
+{% block breadcrumbs %}
+    {% include("components/breadcrumbs/breadcrumbs.html.twig") with {'crumbs': [{'name': 'downloads', 'url': 'downloads' }]} %}
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/downloads.js') }}"></script>
+{% endblock %}

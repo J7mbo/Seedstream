@@ -1,0 +1,9 @@
+database:
+  driver:   pdo_mysql
+  dbhost:   localhost
+  dbname:   seedstream
+  user:     seedstream
+  password: seedstream
+  charset:  utf8
+
+log_file: '/var/log/seedstream/app.log'
