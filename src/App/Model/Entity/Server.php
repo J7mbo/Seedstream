@@ -4,6 +4,7 @@ namespace App\Model\Entity;
 
 use App\Model\Entity\ValueObjects\Server\IpAddress,
     Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class Server
@@ -44,18 +45,23 @@ class Server
     private $isActive = true;
 
     /**
-     * @ORM\OneToOne(targetEntity="Client", mappedBy="server", cascade={"persist"})
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="App\Model\Entity\Client", mappedBy="server", cascade={"persist", "remove"})
      */
-    private $client;
+    private $clients;
 
     /**
      * @constructor
+     *
+     * @param IpAddress $ipAddress
+     * @param           $name
      */
-    public function __construct(IpAddress $ipAddress, $name, Client $client)
+    public function __construct(IpAddress $ipAddress, $name)
     {
+        $this->clients = new ArrayCollection();
         $this->ipAddress = $ipAddress;
-        $this->client    = $client;
-        $this->name      = $name;
+        $this->name = $name;
     }
 
     /**
@@ -135,12 +141,43 @@ class Server
     }
 
     /**
-     * Get Client
+     * Get Clients
      *
-     * @return Client
+     * @return ArrayCollection
      */
-    public function getClient()
+    public function getClients()
     {
-        return $this->client;
+        return $this->clients;
+    }
+
+    /**
+     * Add Clients
+     *
+     * @param Client $client
+     *
+     * @return Server
+     */
+    public function addClient(Client $client)
+    {
+        $this->clients->add($client);
+
+        return $this;
+    }
+
+    /**
+     * Remove Client
+     *
+     * @param Client $client
+     *
+     * @return Server
+     */
+    public function removeClient(Client $client)
+    {
+        if ($this->clients->contains($client))
+        {
+            $this->clients->remove($client);
+        }
+
+        return $this;
     }
 }

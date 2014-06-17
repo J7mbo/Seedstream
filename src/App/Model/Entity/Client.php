@@ -59,9 +59,9 @@ class Client
     /**
      * @var Server
      *
-     * @ORM\OneToOne(targetEntity="Server", inversedBy="client")
-     * @ORM\JoinColumn(name="server_id", referencedColumnName="id")
-     **/
+     * @ORM\ManyToOne(targetEntity="App\Model\Entity\Server", inversedBy="client")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     */
     private $server;
 
     /**
@@ -150,5 +150,15 @@ class Client
     public function getServer()
     {
         return $this->server;
+    }
+
+    /**
+     * Set server
+     *
+     * @param Server $server
+     */
+    public function setServer(Server $server)
+    {
+        $this->server = $server;
     }
 } 
