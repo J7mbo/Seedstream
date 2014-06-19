@@ -74,6 +74,17 @@ class User implements AdvancedUserInterface
 
     /**
      * @constructor
+     *
+     * @param       $id
+     * @param       $username
+     * @param       $email
+     * @param       $password
+     * @param       $token
+     * @param array $roles                 Optional
+     * @param bool  $enabled               Optional
+     * @param bool  $userNonExpired        Optional
+     * @param bool  $credentialsNonExpired Optional
+     * @param bool  $userNonLocked         Optional
      */
     public function __construct($id, $username, $email, $password, $token, array $roles = array(), $enabled = true, $userNonExpired = true, $credentialsNonExpired = true, $userNonLocked = true)
     {
