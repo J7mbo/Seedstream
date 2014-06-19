@@ -62,6 +62,10 @@ class ServerDownloadsComparisonRule implements Rule
         {
             $lowest = false;
         }
+        catch (\Exception $e)
+        {
+            $lowest = false;
+        }
 
         return $lowest;
     }
