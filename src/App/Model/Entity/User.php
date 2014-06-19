@@ -68,7 +68,7 @@ class User implements AdvancedUserInterface
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Download", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Download", mappedBy="user", cascade={"persist"})
      */
     protected $downloads;
 

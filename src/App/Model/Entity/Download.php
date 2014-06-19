@@ -24,7 +24,7 @@ class Download
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="downloads")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="downloads", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -37,14 +37,24 @@ class Download
     private $hashString;
 
     /**
+     * @var Client
+     *
+     * @ORM\OneToOne(targetEntity="Client", mappedBy="download", cascade={"persist"})
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     */
+    private $client;
+
+    /**
      * @constructor
      *
+     * @param Client $client     The client this download belongs to
      * @param User   $user       The user this download belongs to
      * @param string $hashString The unique identifier provided by the torrent client
      */
-    public function __construct(User $user, $hashString)
+    public function __construct(Client $client, User $user, $hashString)
     {
         $this->hashString = $hashString;
+        $this->client = $client;
         $this->user = $user;
     }
 
@@ -66,5 +76,25 @@ class Download
     public function getHashString()
     {
         return $this->hashString;
+    }
+
+    /**
+     * Get Client
+     *
+     * @return Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Get User
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
