@@ -14,7 +14,7 @@ class ServerSet implements \Iterator, \Countable
     /**
      * @var Server[] An array of Server objects
      */
-    private $servers;
+    private $servers = [];
 
     /**
      * @var int Iterator position key
