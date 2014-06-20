@@ -51,7 +51,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
      *
      * @param $id
      *
-     * @return null|object
+     * @return User
      */
     public function loadUserById($id)
     {

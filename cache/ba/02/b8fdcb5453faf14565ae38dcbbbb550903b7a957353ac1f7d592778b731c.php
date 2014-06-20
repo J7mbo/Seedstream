@@ -81,7 +81,10 @@ class __TwigTemplate_ba02b8fdcb5453faf14565ae38dcbbbb550903b7a957353ac1f7d592778
         // line 35
         echo $this->env->getExtension('routing')->getPath("downloads");
         echo "\"><i class=\"icon-download\"></i></a>
-            <span class=\"bottom-info bg-primary\">3 Active Downloads</span>
+            <span class=\"bottom-info bg-primary\">";
+        // line 36
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["statistics"]) ? $context["statistics"] : $this->getContext($context, "statistics")), "active"), "html", null, true);
+        echo " Active Downloads</span>
         </li>
         <li class=\"bg-success\">
             <div class=\"top-info\">
@@ -142,6 +145,6 @@ class __TwigTemplate_ba02b8fdcb5453faf14565ae38dcbbbb550903b7a957353ac1f7d592778
 
     public function getDebugInfo()
     {
-        return array (  82 => 35,  76 => 32,  54 => 12,  51 => 11,  46 => 8,  43 => 7,  37 => 5,  31 => 3,);
+        return array (  86 => 36,  82 => 35,  76 => 32,  54 => 12,  51 => 11,  46 => 8,  43 => 7,  37 => 5,  31 => 3,);
     }
 }

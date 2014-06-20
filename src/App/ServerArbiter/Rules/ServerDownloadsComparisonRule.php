@@ -2,7 +2,7 @@
 
 namespace App\ServerArbiter\Rules;
 
-use App\ServerArbiter\Rules\Supporting\ServerDownloadsCountFetcher,
+use App\Model\Service\ServerDownloadsCountFetcher,
     App\ServerArbiter\ServerSet,
     App\Model\Entity\Server;
 

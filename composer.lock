@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "d180ac86a08024c988dbd35ff3a0820e",
+    "hash": "7358449cd9aa4078555922fec174806e",
     "packages": [
         {
             "name": "cboden/ratchet",
@@ -55,17 +56,96 @@
             "time": "2014-06-08 15:19:45"
         },
         {
-            "name": "dflydev/doctrine-orm-service-provider",
-            "version": "dev-master",
+            "name": "daverandom/addr",
+            "version": "0.2.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/dflydev/dflydev-doctrine-orm-service-provider.git",
-                "reference": "3e5aaadd536b38cb8c6cc5bfbe220ff7d366b206"
+                "url": "https://github.com/DaveRandom/Addr.git",
+                "reference": "d4257d132f39eb98a918a4a05e6fa0710e22bdfe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dflydev/dflydev-doctrine-orm-service-provider/zipball/3e5aaadd536b38cb8c6cc5bfbe220ff7d366b206",
-                "reference": "3e5aaadd536b38cb8c6cc5bfbe220ff7d366b206",
+                "url": "https://api.github.com/repos/DaveRandom/Addr/zipball/d4257d132f39eb98a918a4a05e6fa0710e22bdfe",
+                "reference": "d4257d132f39eb98a918a4a05e6fa0710e22bdfe",
+                "shasum": ""
+            },
+            "require": {
+                "daverandom/libdns": "~0.2.1",
+                "php": ">=5.4.0",
+                "rdlowrey/alert": "~0.8.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Addr\\": "lib/Addr/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Wright",
+                    "email": "addr@daverandom.com",
+                    "role": "Creator / Lead Developer"
+                }
+            ],
+            "description": "Asynchronous DNS resolver using Alert",
+            "homepage": "https://github.com/DaveRandom/Addr",
+            "keywords": [
+                "async",
+                "client",
+                "dns",
+                "resolve"
+            ],
+            "time": "2014-06-17 17:06:25"
+        },
+        {
+            "name": "daverandom/libdns",
+            "version": "v0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DaveRandom/LibDNS.git",
+                "reference": "f94f92f3fa8b2776ff2593c87d93d87480efeb73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DaveRandom/LibDNS/zipball/f94f92f3fa8b2776ff2593c87d93d87480efeb73",
+                "reference": "f94f92f3fa8b2776ff2593c87d93d87480efeb73",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "LibDNS": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "DNS protocol implementation written in pure PHP",
+            "keywords": [
+                "dns"
+            ],
+            "time": "2013-11-28 15:57:15"
+        },
+        {
+            "name": "dflydev/doctrine-orm-service-provider",
+            "version": "1.0.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dflydev/dflydev-doctrine-orm-service-provider.git",
+                "reference": "c5820e9e14884ebca9419bc3ceafe52899be6d5a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dflydev/dflydev-doctrine-orm-service-provider/zipball/c5820e9e14884ebca9419bc3ceafe52899be6d5a",
+                "reference": "c5820e9e14884ebca9419bc3ceafe52899be6d5a",
                 "shasum": ""
             },
             "require": {
@@ -82,11 +162,6 @@
                 "dflydev/psr0-resource-locator-service-provider": "1.0.*@dev"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Dflydev\\Cilex\\Provider\\DoctrineOrm": "src",
@@ -119,7 +194,7 @@
                 "pimple",
                 "silex"
             ],
-            "time": "2014-01-21 21:52:29"
+            "time": "2014-06-17 22:52:19"
         },
         {
             "name": "doctrine/annotations",
@@ -274,16 +349,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "77bc8cc35b33a2bcdaf5bc2c99fdcab8773f02a0"
+                "reference": "bbe35735af4a826c1f86b04f2fd885ff5fc0f82b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/77bc8cc35b33a2bcdaf5bc2c99fdcab8773f02a0",
-                "reference": "77bc8cc35b33a2bcdaf5bc2c99fdcab8773f02a0",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/bbe35735af4a826c1f86b04f2fd885ff5fc0f82b",
+                "reference": "bbe35735af4a826c1f86b04f2fd885ff5fc0f82b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
             },
             "type": "library",
             "extra": {
@@ -334,7 +412,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2014-06-05 18:37:07"
+            "time": "2014-06-17 17:31:49"
         },
         {
             "name": "doctrine/common",
@@ -420,12 +498,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "e351fae65807ab46a10e878eddabd499b391cdc9"
+                "reference": "247bd099b8f74eed3d7bdb42a5e0bb1af1925dce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/e351fae65807ab46a10e878eddabd499b391cdc9",
-                "reference": "e351fae65807ab46a10e878eddabd499b391cdc9",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/247bd099b8f74eed3d7bdb42a5e0bb1af1925dce",
+                "reference": "247bd099b8f74eed3d7bdb42a5e0bb1af1925dce",
                 "shasum": ""
             },
             "require": {
@@ -486,7 +564,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-06-04 00:56:03"
+            "time": "2014-06-19 21:21:27"
         },
         {
             "name": "doctrine/inflector",
@@ -623,12 +701,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "5c447cfb7118e2822a9fe0e01deb575b5e7a8527"
+                "reference": "84a0fddaf4789157253164ae4a4ba33c67d60735"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/5c447cfb7118e2822a9fe0e01deb575b5e7a8527",
-                "reference": "5c447cfb7118e2822a9fe0e01deb575b5e7a8527",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/84a0fddaf4789157253164ae4a4ba33c67d60735",
+                "reference": "84a0fddaf4789157253164ae4a4ba33c67d60735",
                 "shasum": ""
             },
             "require": {
@@ -692,7 +770,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-06-07 13:12:09"
+            "time": "2014-06-19 14:06:03"
         },
         {
             "name": "entea/silex-twig-simple-asset-extension",
@@ -1028,12 +1106,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/J7mbo/TorrentPHP.git",
-                "reference": "932070dd74b021c3ccffafafaaa3aa273c825c4e"
+                "reference": "4482570afb4896504bcf74eec757aa0145765738"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/J7mbo/TorrentPHP/zipball/932070dd74b021c3ccffafafaaa3aa273c825c4e",
-                "reference": "932070dd74b021c3ccffafafaaa3aa273c825c4e",
+                "url": "https://api.github.com/repos/J7mbo/TorrentPHP/zipball/4482570afb4896504bcf74eec757aa0145765738",
+                "reference": "4482570afb4896504bcf74eec757aa0145765738",
                 "shasum": ""
             },
             "require": {
@@ -1068,7 +1146,7 @@
                 "php",
                 "torrent"
             ],
-            "time": "2014-06-05 13:22:26"
+            "time": "2014-06-19 16:22:35"
         },
         {
             "name": "monolog/monolog",
@@ -1225,16 +1303,16 @@
         },
         {
             "name": "rdlowrey/alert",
-            "version": "v0.1.2",
+            "version": "v0.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdlowrey/alert.git",
-                "reference": "71e3331d21f90b9143ee91513560fa891e09f1ec"
+                "reference": "a09cc62f81d8950e05e6c715668be3cb2a07d716"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/alert/zipball/71e3331d21f90b9143ee91513560fa891e09f1ec",
-                "reference": "71e3331d21f90b9143ee91513560fa891e09f1ec",
+                "url": "https://api.github.com/repos/rdlowrey/alert/zipball/a09cc62f81d8950e05e6c715668be3cb2a07d716",
+                "reference": "a09cc62f81d8950e05e6c715668be3cb2a07d716",
                 "shasum": ""
             },
             "require": {
@@ -1242,9 +1320,9 @@
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Alert": "src"
-                }
+                "files": [
+                    "src/bootstrap.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1253,7 +1331,7 @@
             "authors": [
                 {
                     "name": "Daniel Lowrey",
-                    "email": "rdlowrey@gmail.com",
+                    "email": "rdlowrey@php.net",
                     "role": "Creator / Lead Developer"
                 }
             ],
@@ -1265,7 +1343,7 @@
                 "libevent",
                 "non-blocking"
             ],
-            "time": "2013-08-12 15:35:18"
+            "time": "2014-06-11 14:09:10"
         },
         {
             "name": "rdlowrey/artax",
@@ -1273,17 +1351,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdlowrey/Artax.git",
-                "reference": "c141c70ae6ca264e4c6fc5de0d2a0b12fa236a9a"
+                "reference": "ee58725f8fb4efe22241065c05cc58f0543c217b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/Artax/zipball/c141c70ae6ca264e4c6fc5de0d2a0b12fa236a9a",
-                "reference": "c141c70ae6ca264e4c6fc5de0d2a0b12fa236a9a",
+                "url": "https://api.github.com/repos/rdlowrey/Artax/zipball/ee58725f8fb4efe22241065c05cc58f0543c217b",
+                "reference": "ee58725f8fb4efe22241065c05cc58f0543c217b",
                 "shasum": ""
             },
             "require": {
+                "daverandom/addr": "~0.2.1",
                 "php": ">=5.4.0",
-                "rdlowrey/alert": "~0.1.2"
+                "rdlowrey/alert": "~0.8.1"
             },
             "type": "library",
             "autoload": {
@@ -1311,7 +1390,7 @@
                 "parallel",
                 "rest"
             ],
-            "time": "2014-05-05 19:58:19"
+            "time": "2014-06-17 18:30:03"
         },
         {
             "name": "rdlowrey/auryn",
@@ -1651,16 +1730,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Debug.git",
-                "reference": "342dc52465f509f4ba5a8312ee1052a2d6f05101"
+                "reference": "4bd5484d456e6263acc6429fabea7e2fbc74fffc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Debug/zipball/342dc52465f509f4ba5a8312ee1052a2d6f05101",
-                "reference": "342dc52465f509f4ba5a8312ee1052a2d6f05101",
+                "url": "https://api.github.com/repos/symfony/Debug/zipball/4bd5484d456e6263acc6429fabea7e2fbc74fffc",
+                "reference": "4bd5484d456e6263acc6429fabea7e2fbc74fffc",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.3",
+                "psr/log": "~1.0"
             },
             "require-dev": {
                 "symfony/http-foundation": "~2.1",
@@ -1699,7 +1779,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "http://symfony.com",
-            "time": "2014-06-07 15:54:31"
+            "time": "2014-06-16 11:52:56"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1764,12 +1844,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "1b6f7c6ad081176650f1ac89be848d12e4849a18"
+                "reference": "4dbd3a116c8effa12b927a92b576845c4bddfbef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/1b6f7c6ad081176650f1ac89be848d12e4849a18",
-                "reference": "1b6f7c6ad081176650f1ac89be848d12e4849a18",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/4dbd3a116c8effa12b927a92b576845c4bddfbef",
+                "reference": "4dbd3a116c8effa12b927a92b576845c4bddfbef",
                 "shasum": ""
             },
             "require": {
@@ -1810,7 +1890,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2014-06-07 15:45:34"
+            "time": "2014-06-16 09:30:02"
         },
         {
             "name": "symfony/http-kernel",
@@ -2146,12 +2226,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "1c0bec2814a078a81fb86dbc38798bf73418f839"
+                "reference": "96336aba609af06e8722ddc17451ce93d70b54e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/1c0bec2814a078a81fb86dbc38798bf73418f839",
-                "reference": "1c0bec2814a078a81fb86dbc38798bf73418f839",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/96336aba609af06e8722ddc17451ce93d70b54e1",
+                "reference": "96336aba609af06e8722ddc17451ce93d70b54e1",
                 "shasum": ""
             },
             "require": {
@@ -2195,7 +2275,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-05-26 15:15:28"
+            "time": "2014-06-20 07:26:46"
         }
     ],
     "packages-dev": [
