@@ -2,7 +2,8 @@
 
 namespace App\Model\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection,
+    Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Client
@@ -65,6 +66,13 @@ class Client
     private $server;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Download", mappedBy="client")
+     */
+    private $downloads;
+
+    /**
      * @constructor
      *
      * @param string $type         The type of client - for example "transmission" or "deluge"
@@ -75,6 +83,7 @@ class Client
      */
     public function __construct($type, $port, $endPoint, $authPassword, $authUsername)
     {
+        $this->downloads    = new ArrayCollection();
         $this->authUsername = $authUsername;
         $this->authPassword = $authPassword;
         $this->endPoint     = trim($endPoint, "/");
@@ -160,5 +169,46 @@ class Client
     public function setServer(Server $server)
     {
         $this->server = $server;
+    }
+
+    /**
+     * Add Download
+     *
+     * @param Download $download
+     *
+     * @return Client
+     */
+    public function addClient(Download $download)
+    {
+        $this->downloads->add($download);
+
+        return $this;
+    }
+
+    /**
+     * Remove Download
+     *
+     * @param Download $download
+     *
+     * @return Client
+     */
+    public function removeClient(Download $download)
+    {
+        if ($this->downloads->contains($download))
+        {
+            $this->downloads->remove($download);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get downloads
+     *
+     * @return Download[]
+     */
+    public function getDownloads()
+    {
+        return $this->downloads;
     }
 } 

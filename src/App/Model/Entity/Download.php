@@ -39,7 +39,7 @@ class Download
     /**
      * @var Client
      *
-     * @ORM\OneToOne(targetEntity="Client", mappedBy="download", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="download", cascade={"persist"})
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $client;
