@@ -24,7 +24,7 @@ class Download
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="downloads", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="downloads", fetch="EAGER", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;

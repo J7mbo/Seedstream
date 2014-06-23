@@ -60,7 +60,7 @@ class Client
     /**
      * @var Server
      *
-     * @ORM\ManyToOne(targetEntity="App\Model\Entity\Server", inversedBy="client")
+     * @ORM\ManyToOne(targetEntity="Server", inversedBy="client")
      * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
     private $server;
