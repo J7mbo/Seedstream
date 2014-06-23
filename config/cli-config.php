@@ -51,11 +51,15 @@ $cli->setHelperSet(new HelperSet([
 $cli->addCommands([
     new Command\GenerateRepositoriesCommand,
     new Command\GenerateEntitiesCommand,
+    new Command\GenerateProxiesCommand,
     new Command\ConvertMappingCommand,
     new Command\ValidateSchemaCommand,
     new Command\SchemaTool\CreateCommand,
     new Command\SchemaTool\UpdateCommand,
-    new Command\GenerateProxiesCommand
+    new Command\GenerateProxiesCommand,
+    new Command\ClearCache\MetadataCommand,
+    new Command\ClearCache\QueryCommand,
+    new Command\ClearCache\ResultCommand
 ]);
 
 $cli->run();
