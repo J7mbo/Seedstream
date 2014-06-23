@@ -2,7 +2,8 @@
 
 namespace Server\Action;
 
-use Auryn\Provider;
+use App\Model\Entity\User,
+    Auryn\Provider;
 
 /**
  * Class ActionFactory
@@ -33,17 +34,20 @@ class ActionFactory
     /**
      * Build the actual object
      *
-     * @param $topic
+     * @param User   $user
+     * @param string $topic
      *
      * @throws ActionException When a handler for the action doesn't exist
      *
      * @return ActionHandler
+     *
+     * @note Any typehint for a $user in the handler will provide the User object of the logged-in user
      */
-    public function build($topic)
+    public function build(User $user, $topic)
     {
         if (class_exists($action = sprintf('\Server\Action\%sHandler', ucfirst(strtolower($topic)))))
         {
-            return $this->provider->make($action);
+            return $this->provider->make($action, [':user' => $user]);
         }
         else
         {

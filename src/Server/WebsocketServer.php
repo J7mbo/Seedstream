@@ -62,7 +62,7 @@ new IoServer(
             new WampServer(
                 new EventHandler(
                     /** All the stuff our EventHandler needs DI'ing to do it's job for websocket requests **/
-                    $logger, $loop, new RequestFactory, new ActionFactory($app->provider), $userRepo
+                    $logger, $loop, new RequestFactory, new ActionFactory($app->provider), $userRepo, $orm
                 )
             )
         )

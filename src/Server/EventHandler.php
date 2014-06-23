@@ -13,9 +13,10 @@ use Server\Request\Factory as RequestFactory,
     Server\Action\ActionFactory,
     Ratchet\ConnectionInterface,
     Ratchet\Wamp\WampConnection,
+    Doctrine\ORM\EntityManager,
+    TorrentPHP\ClientException,
     Ratchet\Wamp\Topic,
     Monolog\Logger;
-use TorrentPHP\ClientException;
 
 /**
  * Class EventHandler
@@ -26,6 +27,11 @@ use TorrentPHP\ClientException;
  */
 class EventHandler implements WampServerInterface
 {
+    /**
+     * How often to 'push' data to subscribed clients
+     */
+    const INTERVAL = 2;
+
     /**
      * @var array List of currently connected clients
      */
@@ -57,6 +63,11 @@ class EventHandler implements WampServerInterface
     private $userRepo;
 
     /**
+     * @var EntityManager
+     */
+    private $em;
+
+    /**
      * @constructor
      *
      * @param Logger         $logger         For logging all the events that occur
@@ -64,14 +75,23 @@ class EventHandler implements WampServerInterface
      * @param RequestFactory $requestFactory Factory that builds and request objects
      * @param ActionFactory  $actionFactory  Factory that builds action handlers given a topic string
      * @param UserRepository $userRepo       Repository for getting the user details
+     * @param EntityManager  $em             Entity Manager to get fresh entity data
      */
-    public function __construct(Logger $logger, LoopInterface $loop, RequestFactory $requestFactory, ActionFactory $actionFactory, UserRepository $userRepo)
+    public function __construct(
+        Logger         $logger,
+        LoopInterface  $loop,
+        RequestFactory $requestFactory,
+        ActionFactory  $actionFactory,
+        UserRepository $userRepo,
+        EntityManager  $em
+    )
     {
         $this->requestFactory = $requestFactory;
-        $this->actionFactory = $actionFactory;
-        $this->userRepo = $userRepo;
-        $this->logger = $logger;
-        $this->loop   = $loop;
+        $this->actionFactory  = $actionFactory;
+        $this->userRepo       = $userRepo;
+        $this->logger         = $logger;
+        $this->loop           = $loop;
+        $this->em             = $em;
     }
 
     /**
@@ -130,27 +150,42 @@ class EventHandler implements WampServerInterface
             ));
         }
 
-        /** Actually handle the action (topic, eg "torrents", "statistics" from the user) **/
-        try
+        $timer = $this->loop->addPeriodicTimer(self::INTERVAL, function() use ($user, $conn, $request, $topic)
         {
-            $data = $this->actionFactory->build($request->getTopic())->handle();
+            /** Actually handle the action (topic, eg "torrents", "statistics" from the user) **/
+            try
+            {
+                $data = $this->actionFactory->build($user, $request->getTopic())->handle();
 
-            $this->clients[$conn->resourceId]['userId']   = $user->getId();
-            $this->clients[$conn->resourceId]['username'] = $user->getUsername();
-            $this->clients[$conn->resourceId]['topic']    = $request->getTopic();
+                $this->clients[$conn->resourceId]['userId']   = $user->getId();
+                $this->clients[$conn->resourceId]['username'] = $user->getUsername();
+                $this->clients[$conn->resourceId]['topic']    = $request->getTopic();
 
-            $this->logger->addNotice(sprintf("User %s (id: %d) subscribed to %s, from: %s", $user->getUsername(), $user->getId(), $request->getTopic(), $conn->remoteAddress));
+                return $topic->broadcast($data);
+            }
+            catch (ActionException $e)
+            {
+                $this->logger->addWarning($e->getMessage());
+            }
+            catch (ClientException $e)
+            {
+                $this->logger->addError("Something went wrong with the torrent client: " . $e->getMessage());
+            }
+            catch (\Exception $e)
+            {
+                $this->logger->addError("Something else went wrong: " . $e->getMessage());
+            }
+        });
 
-            return $topic->broadcast($data);
-        }
-        catch (ActionException $e)
-        {
-            $this->logger->addWarning($e->getMessage());
-        }
-        catch (ClientException $e)
-        {
-            $this->logger->addError($e->getMessage());
-        }
+        $this->clients[$conn->resourceId]['timer']    = $timer;
+        $this->clients[$conn->resourceId]['userId']   = $user->getId();
+        $this->clients[$conn->resourceId]['username'] = $user->getUsername();
+        $this->clients[$conn->resourceId]['topic']    = $request->getTopic();
+
+        $this->logger->addNotice(sprintf(
+            "User %s (id: %d) subscribed to %s, from: %s",
+            $user->getUsername(), $user->getId(), $request->getTopic(), $conn->remoteAddress
+        ));
     }
 
     /**
