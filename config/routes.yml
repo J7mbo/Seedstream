@@ -2,13 +2,13 @@
 routes:
   home:
     pattern:  /
-    defaults: { _controller: 'HomeController:indexAction' }
+    defaults: { _controller: 'HomeController:indexAction', _template: 'home/index.html.twig' }
   login:
     pattern:  /login
-    defaults: { _controller: 'HomeController:loginAction' }
+    defaults: { _controller: 'HomeController:loginAction', _template: 'home/login.html.twig' }
   dashboard:
     pattern:  /dashboard
-    defaults: {_controller: 'DashboardController:indexAction' }
+    defaults: {_controller: 'DashboardController:indexAction', _template: 'dashboard/index.html.twig' }
   downloads:
     pattern:  /downloads
-    defaults: {_controller: 'DownloadsController:indexAction' }
+    defaults: {_controller: 'DownloadsController:indexAction', _template: 'downloads/index.html.twig' }

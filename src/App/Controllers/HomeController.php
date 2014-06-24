@@ -5,8 +5,7 @@ namespace App\Controllers;
 use Symfony\Component\HttpFoundation\RedirectResponse,
     Symfony\Component\Routing\Generator\UrlGenerator,
     Symfony\Component\Security\Core\SecurityContext,
-    Symfony\Component\HttpFoundation\Request,
-    Twig_Environment;
+    Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class HomeController
@@ -15,12 +14,12 @@ use Symfony\Component\HttpFoundation\RedirectResponse,
  */
 class HomeController
 {
-    public function indexAction(Twig_Environment $twig)
+    public function indexAction()
     {
-        return $twig->render('home/index.html.twig', array());
+        return [];
     }
     
-    public function loginAction(Request $req, Twig_Environment $twig, SecurityContext $sc, UrlGenerator $urlgen)
+    public function loginAction(Request $req, SecurityContext $sc, UrlGenerator $urlgen)
     {
         if ($sc->isGranted('IS_AUTHENTICATED_FULLY'))
         {
@@ -32,10 +31,10 @@ class HomeController
             $errorConst = $sc::AUTHENTICATION_ERROR;
             $lastUsernameConst = $sc::LAST_USERNAME;
 
-            return $twig->render('home/login.html.twig', array(
+            return [
                 'error' => ($session->has($errorConst)) ? $session->get($errorConst)->getMessage() : null,
                 'last_username' => $session->get($lastUsernameConst),
-            ));
+            ];
         }
     }
 }

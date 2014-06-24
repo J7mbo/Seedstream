@@ -9,8 +9,8 @@ namespace App\Controllers;
  */
 class DownloadsController
 {
-    public function indexAction(\Twig_Environment $twig)
+    public function indexAction()
     {
-        return $twig->render('downloads/index.html.twig');
+        return [];
     }
 }

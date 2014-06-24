@@ -2,8 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Model\Service\Statistics\ActiveDownloadsStatistic,
-    Twig_Environment;
+use App\Model\Service\Statistics\ActiveDownloadsStatistic;
 
 /**
  * Class DashboardController
@@ -12,17 +11,14 @@ use App\Model\Service\Statistics\ActiveDownloadsStatistic,
  */
 class DashboardController
 {
-    public function indexAction(
-        ActiveDownloadsStatistic $activeDownloadsStatistic,
-        Twig_Environment         $twig
-    )
+    public function indexAction(ActiveDownloadsStatistic $activeDownloadsStatistic)
     {
         $active = $activeDownloadsStatistic->getStatistic();
 
-        return $twig->render('dashboard/index.html.twig', [
+        return [
             'statistics' => [
                 'active' => $active
             ]
-        ]);
+        ];
     }
 } 

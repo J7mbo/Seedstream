@@ -1,14 +1,10 @@
 <?php
 
-/**
- * Main application class that extends silex application to perform all the
- * bootstrapping and setting up. Should only need to be touched to add new
- * service providers and environmental settings.
- */
 namespace App;
 
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider,
     Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder,
+    Symfony\Component\EventDispatcher\EventDispatcher,
     Symfony\Component\Security\Core\SecurityContext,
     Doctrine\ORM\Mapping\Driver\AnnotationDriver,
     Doctrine\Common\Annotations\AnnotationReader,
@@ -25,6 +21,15 @@ use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider,
     Auryn\ReflectionPool,
     Auryn\Provider;
 
+/**
+ * Class Application
+ *
+ * Main application class that extends silex application to perform all the
+ * bootstrapping and setting up. Should only need to be touched to add new
+ * service providers and environmental settings.
+ *
+ * @package App
+ */
 class Application extends \Silex\Application
 {
     /**
@@ -99,6 +104,11 @@ class Application extends \Silex\Application
     private function registerServiceProviders()
     {
         $app = $this;
+
+        $app['route_class'] = 'App\CustomRoute';
+        /** @var EventDispatcher $dispatcher */
+        $dispatcher = $app['dispatcher'];
+        $dispatcher->addSubscriber(new TemplateRenderingListener($app));
 
         $app->register(new MonologServiceProvider, [
             'monolog.logfile' => $this->config['log_file']
@@ -263,10 +273,12 @@ class Application extends \Silex\Application
     private function registerRoutes()
     {        
         $routes =  $this->config['routes'];
-        
+
         foreach ($routes as $name => $route)
         {
-            $this->match($route['pattern'], sprintf('App\Controllers\%s', $route['defaults']['_controller']))->bind($name)->method(isset($route['method']) ? $route['method'] : 'GET');    
+            $this->match($route['pattern'], sprintf('App\Controllers\%s', $route['defaults']['_controller']))->bind($name)->method(isset($route['method']) ? $route['method'] : 'GET')
+                 ->{(isset($route['defaults']['_template'])) ? 'template' : 'noTemplate'}
+                   ((isset($route['defaults']['_template'])) ? $route['defaults']['_template'] : false);
         }
     }
 }
