@@ -196,7 +196,7 @@ class Client
     {
         if ($this->downloads->contains($download))
         {
-            $this->downloads->remove($download);
+            $this->downloads->removeElement($download);
         }
 
         return $this;

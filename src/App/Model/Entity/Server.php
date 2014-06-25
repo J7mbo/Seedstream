@@ -3,8 +3,8 @@
 namespace App\Model\Entity;
 
 use App\Model\Entity\ValueObjects\Server\IpAddress,
+    Doctrine\Common\Collections\ArrayCollection,
     Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class Server
@@ -175,7 +175,7 @@ class Server
     {
         if ($this->clients->contains($client))
         {
-            $this->clients->remove($client);
+            $this->clients->removeElement($client);
         }
 
         return $this;
