@@ -192,7 +192,7 @@ class Client
      *
      * @return Client
      */
-    public function removeClient(Download $download)
+    public function removeDownload(Download $download)
     {
         if ($this->downloads->contains($download))
         {
