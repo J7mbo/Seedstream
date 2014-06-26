@@ -60,15 +60,15 @@ class Client
     /**
      * @var Server
      *
-     * @ORM\ManyToOne(targetEntity="Server", inversedBy="client")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Server", inversedBy="clients")
+     * @ORM\JoinColumn(name="server_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $server;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Download", mappedBy="client")
+     * @ORM\OneToMany(targetEntity="Download", mappedBy="client", cascade={"persist", "remove"})
      */
     private $downloads;
 
@@ -169,6 +169,16 @@ class Client
     public function setServer(Server $server)
     {
         $this->server = $server;
+    }
+
+    /**
+     * Remove Server
+     *
+     * @param Server $server
+     */
+    public function removeServer(Server $server)
+    {
+        $this->server = null;
     }
 
     /**

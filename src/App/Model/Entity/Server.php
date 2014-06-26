@@ -47,7 +47,7 @@ class Server
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="App\Model\Entity\Client", mappedBy="server", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Client", mappedBy="server", cascade={"all"})
      */
     private $clients;
 
@@ -160,6 +160,7 @@ class Server
     public function addClient(Client $client)
     {
         $this->clients->add($client);
+        $client->setServer($this);
 
         return $this;
     }
