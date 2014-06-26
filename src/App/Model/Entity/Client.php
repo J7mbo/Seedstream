@@ -178,7 +178,7 @@ class Client
      *
      * @return Client
      */
-    public function addClient(Download $download)
+    public function addDownload(Download $download)
     {
         $this->downloads->add($download);
 
