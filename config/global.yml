@@ -13,6 +13,7 @@ auryn:
     - "twig"
     - "db"
     - "orm.em"
+    - "form.factory"
     - "url_generator"
     - "monolog"
   # Interfaces to 'alias' to concrete objects
@@ -20,3 +21,4 @@ auryn:
   # Classes to 'delegate' the request for instantiation/injection of (to factory methods for example)
   delegate:
     "Doctrine\ORM\EntityManager": "Doctrine\ORM\EntityManager::create"
+    "Symfony\Component\Form\FormBuilder": "Symfony\Component\Form\FormFactory::createBuilder"
