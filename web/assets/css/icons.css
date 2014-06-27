@@ -24,20 +24,33 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.btn-group [class*="icon-"] {
+    color: white;
+}
+
 .icon-film:before {
     content: "\e605";
 }
 .icon-download:before {
     content: "\e606";
 }
+.icon-wrench:before {
+    content: "\e60c";
+}
 .icon-wand:before {
     content: "\e607";
+}
+.icon-cross:before {
+    content: "\e60d";
 }
 .icon-sidebar-button:before {
     content: "\e600";
 }
 .icon-inbox:before {
     content: "\e602";
+}
+.icon-pencil:before {
+    content: "\e60b";
 }
 .icon-settings:before {
     content: "\e603";
@@ -47,6 +60,9 @@
 }
 .icon-drive:before {
     content: "\e608";
+}
+.icon-server:before {
+    content: "\e60a";
 }
 .icon-logout:before {
     content: "\e604";

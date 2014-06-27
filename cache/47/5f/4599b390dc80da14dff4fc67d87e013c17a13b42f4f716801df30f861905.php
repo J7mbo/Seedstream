@@ -122,7 +122,24 @@ class __TwigTemplate_475f4599b390dc80da14dff4fc67d87e013c17a13b42f4f716801df30f8
             echo "\">
                     <a href=\"#\"><span>Stream</span> <i class=\"glyphicon glyphicon-film\"></i></a>
                 </li>
-            </ul>
+                ";
+            // line 56
+            if (call_user_func_array($this->env->getFunction('is_granted')->getCallable(), array("ROLE_ADMIN"))) {
+                // line 57
+                echo "                    <li class=\"";
+                if (twig_in_filter("admin", $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method"))) {
+                    echo "active";
+                }
+                echo "\">
+                        <a href=\"";
+                // line 58
+                echo $this->env->getExtension('routing')->getPath("admin");
+                echo "\"><span>Admin</span> <i class=\"glyphicon glyphicon-globe\"></i></a>
+                    </li>
+                ";
+            }
+            // line 61
+            echo "            </ul>
 
         </div>
     </div>
@@ -142,6 +159,6 @@ class __TwigTemplate_475f4599b390dc80da14dff4fc67d87e013c17a13b42f4f716801df30f8
 
     public function getDebugInfo()
     {
-        return array (  119 => 53,  111 => 50,  103 => 47,  98 => 45,  92 => 44,  87 => 42,  81 => 41,  78 => 40,  62 => 28,  49 => 18,  44 => 15,  35 => 10,  30 => 8,  27 => 7,  21 => 2,  88 => 53,  80 => 48,  72 => 43,  68 => 42,  40 => 16,  38 => 15,  23 => 3,  19 => 1,  86 => 36,  82 => 35,  76 => 32,  54 => 12,  51 => 11,  46 => 8,  43 => 7,  37 => 5,  31 => 3,);
+        return array (  142 => 61,  136 => 58,  129 => 57,  127 => 56,  119 => 53,  111 => 50,  103 => 47,  98 => 45,  92 => 44,  87 => 42,  81 => 41,  78 => 40,  62 => 28,  49 => 18,  44 => 15,  35 => 10,  30 => 8,  27 => 7,  21 => 2,  19 => 1,);
     }
 }

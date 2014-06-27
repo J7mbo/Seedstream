@@ -80,15 +80,17 @@ class Client
      * @param string $endPoint     The endpoint to make requests to
      * @param string $authUsername The authentication username to login with
      * @param string $authPassword The authentication password to login with
+     *
+     * @note The endPoint and type are immutable, only the username, password and port can be changed
      */
     public function __construct($type, $port, $endPoint, $authPassword, $authUsername)
     {
         $this->downloads    = new ArrayCollection();
-        $this->authUsername = $authUsername;
-        $this->authPassword = $authPassword;
         $this->endPoint     = trim($endPoint, "/");
         $this->type         = strtolower($type);
-        $this->port         = (int)$port;
+        $this->changeAuthUsername($authUsername);
+        $this->changeAuthPassword($authPassword);
+        $this->changePort($port);
     }
 
     /**
@@ -109,6 +111,47 @@ class Client
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Change Port
+     *
+     * @param int $port
+     *
+     * @return Client
+     */
+    public function changePort($port)
+    {
+        $this->port = (int)$port;
+
+        return $this;
+    }
+
+    /**
+     * Change AuthUsername
+     *
+     * @param string $authUsername
+     *
+     * @return Client
+     */
+    public function changeAuthUsername($authUsername)
+    {
+        $this->authUsername = $authUsername;
+
+        return $this;
+    }
+    /**
+     * Change AuthPassword
+     *
+     * @param string $authPassword
+     *
+     * @return Client
+     */
+    public function changeAuthPassword($authPassword)
+    {
+        $this->authPassword = $authPassword;
+
+        return $this;
     }
 
     /**

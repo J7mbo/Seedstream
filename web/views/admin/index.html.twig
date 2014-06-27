@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Admin{% endblock %}
+
+{% block header_title %}Admin{% endblock %}
+
+{% block breadcrumbs %}
+    {% include("components/breadcrumbs/breadcrumbs.html.twig") with {'crumbs': [{'name': 'admin', 'url': 'admin' }]} %}
+{% endblock %}
+
+{% block content %}
+    <div class="col-lg-13">
+        <ul class="nav nav-list">
+            <li class="nav-header">System Settings</li>
+            <li><a href="{{ path('admin_servers') }}">Servers and Clients</a></li>
+        </ul>
+    </div>
+{% endblock %}

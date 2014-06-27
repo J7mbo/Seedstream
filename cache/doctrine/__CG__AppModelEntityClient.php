@@ -268,23 +268,34 @@ class Client extends \App\Model\Entity\Client implements \Doctrine\ORM\Proxy\Pro
     /**
      * {@inheritDoc}
      */
-    public function addClient(\App\Model\Entity\Download $download)
+    public function removeServer(\App\Model\Entity\Server $server)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addClient', array($download));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeServer', array($server));
 
-        return parent::addClient($download);
+        return parent::removeServer($server);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function removeClient(\App\Model\Entity\Download $download)
+    public function addDownload(\App\Model\Entity\Download $download)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeClient', array($download));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addDownload', array($download));
 
-        return parent::removeClient($download);
+        return parent::addDownload($download);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeDownload(\App\Model\Entity\Download $download)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeDownload', array($download));
+
+        return parent::removeDownload($download);
     }
 
     /**

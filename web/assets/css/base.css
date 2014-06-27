@@ -11434,3 +11434,9 @@ li.plupload_droptext {
 .navbar .glyphicon-th-large {
     font-size: 16px;
 }
+
+td img.small {
+    max-height: 18px;
+    padding-right: 10px;
+    vertical-align: top;
+}

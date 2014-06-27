@@ -1,0 +1,158 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Admin > Servers{% endblock %}
+
+{% block header_title %}Servers{% endblock %}
+
+{% block breadcrumbs %}
+    {% include("components/breadcrumbs/breadcrumbs.html.twig") with {'crumbs': [{'name': 'admin', 'url': 'admin' }, {'name': 'servers', 'url': 'admin_servers' }]} %}
+{% endblock %}
+
+{# The fields to display for each client, for each server, within the table below #}
+{% set clientTableFields = ['type', 'port', 'endpoint', 'authUsername', 'authPassword'] %}
+
+{# The client types to display in the add client form #}
+{% set availableClients = ['transmission', 'deluge'] %}
+
+{% block content %}
+    <div class="col-md-13">
+
+        {# Server / Client Listing #}
+        <div class="panel-group block">
+            {% for server in servers %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse-group{{ loop.index }}">
+                                <i class="icon-server"></i>
+                                IP Address: {{ server.ipAddress }}
+                                Status: {{ (server.isActive == 1) ? "Active" : "Inactive" }}
+                            </a>
+                        </h6>
+                    </div>
+                    <div id="collapse-group{{ loop.index }}" class="table-responsive panel-collapse collapse in">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    {% if server.clients.count == 0 %}
+                                        <tr>
+                                            <td colspan="{{ clientTableFields|length + 1 }}">
+                                                There are no clients for this server yet. <a class="add-server-btn">Add one</a>?
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        {% for i in clientTableFields %}
+                                            <th>{{ i|title }}</th>
+                                        {% endfor %}
+                                        <th>Manage</th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for client in server.clients %}
+                                    <tr data-client-id="{{ client.id }}" class="{{ (server.isActive == 1) ? "success" : "warning" }}">
+                                        {% for i in clientTableFields %}
+                                            <td>
+                                                {% if loop.first %}
+                                                    {% if attribute(client, i) == 'transmission' %}
+                                                        <img class="small" src="{{ asset('img/transmission.png') }}" />
+                                                    {% elseif attribute(client, i) == 'deluge' %}
+                                                        <img src="{{ asset('img/deluge.png') }}" />
+                                                    {% endif %}
+                                                {% endif %}
+
+                                                {{ attribute(client, i) }}
+                                            </td>
+                                        {% endfor %}
+                                        {% if server.clients.count != 0 %}
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-icon btn-info">
+                                                        <a href="#"><i class="icon-wrench"></i></a>
+                                                    </button>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-icon btn-danger delete-client">
+                                                        <a href=""><i class="icon icon-cross"></i></a>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <hr />
+
+        {# Add new client form #}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h6 class="panel-title">
+                    <i class="icon-sidebar-button"></i>
+                    Add New Client
+                </h6>
+            </div>
+            <div class="panel-body">
+                <form id="add-client-form" class="form-horizontal" action="#" role="form">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">Server:</label>
+                                <div class="col-sm-5">
+                                    <select name="server" class="form-control">
+                                        {% for server in servers %}
+                                            <option value="{{ server.id }}">{{ server.name }} - {{ server.ipAddress }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label">Client:</label>
+                                <div class="col-sm-5">
+                                    <select name="type" class="form-control">
+                                        {% for i in availableClients %}
+                                            <option value="{{ i }}">{{ i }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">Port:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" placeholder="9091" />
+                                </div>
+                                <label class="col-sm-1 control-label">Endpoint:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" placeholder="transmission/rpc" />
+                                </div>
+                                <label class="col-sm-1 control-label">Username:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <label class="col-sm-1 control-label">Password:</label>
+                                <div class="col-sm-2">
+                                    <input type="password" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-actions text-right">
+                                <button type="submit" class="btn btn-info">Add Client</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{ form(form) }}
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript"> var removeClientUrl = '{{ path('admin_servers_remove_client') }}'; </script>
+    <script src="{{ asset('js/rowslideup.js') }}"></script>
+    <script src="{{ asset('js/servers.js') }}"></script>
+{% endblock %}

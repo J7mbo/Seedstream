@@ -9,6 +9,7 @@ use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider,
     Doctrine\ORM\Mapping\Driver\AnnotationDriver,
     Doctrine\Common\Annotations\AnnotationReader,
     Silex\Provider\UrlGeneratorServiceProvider,
+    Silex\Provider\ValidatorServiceProvider,
     Silex\Provider\SecurityServiceProvider,
     Silex\Provider\DoctrineServiceProvider,
     Silex\Provider\SessionServiceProvider,
@@ -16,10 +17,12 @@ use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider,
     \Twig_SimpleFunction as TwigFunction,
     Entea\Twig\Extension\AssetExtension,
     Silex\Provider\TwigServiceProvider,
+    Silex\Provider\FormServiceProvider,
     Doctrine\Common\Cache\ArrayCache,
     Doctrine\Common\Cache\ApcCache,
     Auryn\ReflectionPool,
     Auryn\Provider;
+use Silex\Provider\TranslationServiceProvider;
 
 /**
  * Class Application
@@ -113,6 +116,11 @@ class Application extends \Silex\Application
         $app->register(new MonologServiceProvider, [
             'monolog.logfile' => $this->config['log_file']
         ]);
+
+        /** Required for Symfony\Form **/
+        $app->register(new TranslationServiceProvider, [
+            'translator.messages' => []
+        ]);
         
         $app->register(new DoctrineServiceProvider, [
             'db.options' => $this->config['database']
@@ -152,6 +160,12 @@ class Application extends \Silex\Application
                 'debug' => (($this->config['environment'] === 'dev') ? true : false),
                 'cache' => dirname(dirname(__DIR__)) . '/cache'
             ]
+        ]);
+
+        $app->register(new ValidatorServiceProvider);
+
+        $app->register(new FormServiceProvider, [
+            'form.secret' => uniqid(rand(), true)
         ]);
 
         /** @var \Twig_Environment $twig */

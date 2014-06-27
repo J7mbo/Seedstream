@@ -53,6 +53,11 @@
                 <li class="{% if app.request.attributes.get('_route') == 'stream' %}active{% endif %}">
                     <a href="#"><span>Stream</span> <i class="glyphicon glyphicon-film"></i></a>
                 </li>
+                {% if (is_granted('ROLE_ADMIN')) %}
+                    <li class="{% if 'admin' in app.request.attributes.get('_route') %}active{% endif %}">
+                        <a href="{{ path('admin') }}"><span>Admin</span> <i class="glyphicon glyphicon-globe"></i></a>
+                    </li>
+                {% endif %}
             </ul>
 
         </div>

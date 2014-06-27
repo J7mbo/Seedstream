@@ -15,4 +15,5 @@ security:
     - [ 'ROLE_ADMIN', 'ROLE_USER' ]
   access_rules:
     - [ '^/login$', 'IS_AUTHENTICATED_ANONYMOUSLY' ]
+    - [ '^/admin$', 'ROLE_ADMIN' ]
     - [ '^/.+$', 'ROLE_USER' ]
