@@ -9,6 +9,7 @@ use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider,
     Doctrine\ORM\Mapping\Driver\AnnotationDriver,
     Doctrine\Common\Annotations\AnnotationReader,
     Silex\Provider\UrlGeneratorServiceProvider,
+    Silex\Provider\TranslationServiceProvider,
     Silex\Provider\ValidatorServiceProvider,
     Silex\Provider\SecurityServiceProvider,
     Silex\Provider\DoctrineServiceProvider,
@@ -22,7 +23,6 @@ use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider,
     Doctrine\Common\Cache\ApcCache,
     Auryn\ReflectionPool,
     Auryn\Provider;
-use Silex\Provider\TranslationServiceProvider;
 
 /**
  * Class Application
