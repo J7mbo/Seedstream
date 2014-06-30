@@ -701,12 +701,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "9e36a95a978ac2cf8297b430368f8473c6ab67fb"
+                "reference": "c370426792edda8290843e601e9f95d86a7e873f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/9e36a95a978ac2cf8297b430368f8473c6ab67fb",
-                "reference": "9e36a95a978ac2cf8297b430368f8473c6ab67fb",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/c370426792edda8290843e601e9f95d86a7e873f",
+                "reference": "c370426792edda8290843e601e9f95d86a7e873f",
                 "shasum": ""
             },
             "require": {
@@ -770,7 +770,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-06-26 16:25:53"
+            "time": "2014-06-27 20:37:36"
         },
         {
             "name": "entea/silex-twig-simple-asset-extension",

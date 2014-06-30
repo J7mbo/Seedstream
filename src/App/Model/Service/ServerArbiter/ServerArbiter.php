@@ -1,8 +1,8 @@
 <?php
 
-namespace App\ServerArbiter;
+namespace App\Model\Service\ServerArbiter;
 
-use App\ServerArbiter\Rules\Rule,
+use App\ServerArbiter\ServerSet,
     App\Model\Entity\Server;
 
 /**

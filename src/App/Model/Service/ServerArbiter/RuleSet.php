@@ -1,8 +1,6 @@
 <?php
 
-namespace App\ServerArbiter;
-
-use App\ServerArbiter\Rules\Rule;
+namespace App\Model\Service\ServerArbiter;
 
 /**
  * Class RuleSet

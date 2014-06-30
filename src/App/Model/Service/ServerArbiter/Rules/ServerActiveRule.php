@@ -1,8 +1,9 @@
 <?php
 
-namespace App\ServerArbiter\Rules;
+namespace App\Model\Service\ServerArbiter\Rules;
 
-use App\Model\Entity\Server;
+use App\Model\Service\ServerArbiter\Rule,
+    App\Model\Entity\Server;
 
 /**
  * Class ServerActiveRule

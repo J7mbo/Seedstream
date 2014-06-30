@@ -1,9 +1,8 @@
 <?php
 
-namespace App\ServerArbiter;
+namespace App\Model\Service\ServerArbiter;
 
-use App\Model\Repository\ServerRepository,
-    Doctrine\ORM\EntityManager;
+use App\Model\Repository\ServerRepository;
 
 /**
  * Class ServerSetMapper
@@ -27,22 +26,15 @@ class ServerSetMapper
     private $serverSet;
 
     /**
-     * @var EntityManager
-     */
-    private $entityManager;
-
-    /**
      * @constructor
      *
      * @param ServerRepository $sr
-     * @param EntityManager    $em
      * @param ServerSet        $serverSet
      */
-    public function __construct(ServerRepository $sr, EntityManager $em, ServerSet $serverSet)
+    public function __construct(ServerRepository $sr, ServerSet $serverSet)
     {
-        $this->entityManager = $em;
-        $this->serverSet     = $serverSet;
-        $this->serverRepo    = $sr;
+        $this->serverSet  = $serverSet;
+        $this->serverRepo = $sr;
     }
 
     /**
@@ -56,20 +48,7 @@ class ServerSetMapper
     {
         $serverSet = $this->serverSet;
 
-        if (empty($serverIds))
-        {
-            $servers = $this->serverRepo->findAll();
-        }
-        else
-        {
-            $qb = $this->entityManager->createQueryBuilder();
-
-            $servers = $qb->select('s')
-                          ->from('Server', 's')
-                          ->where($qb->expr()->in('s.id', $serverIds))
-                          ->getQuery()
-                          ->getResult();
-        }
+        $servers = (empty($serverIds)) ? $this->serverRepo->findAll() : $this->serverRepo->findByIds($serverIds);
 
         foreach ($servers as $server)
         {

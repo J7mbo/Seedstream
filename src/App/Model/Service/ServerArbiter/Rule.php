@@ -1,13 +1,13 @@
 <?php
 
-namespace App\ServerArbiter\Rules;
+namespace App\Model\Service\ServerArbiter;
 
 use App\Model\Entity\Server;
 
 /**
  * Interface Rule
  *
- * @package App\ServerArbiter\Rules
+ * @package App\Model\Service\ServerArbiter
  */
 interface Rule
 {

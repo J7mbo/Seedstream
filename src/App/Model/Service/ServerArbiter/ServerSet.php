@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ServerArbiter;
+namespace App\Model\Service\ServerArbiter;
 
 use App\Model\Entity\Server;
 
