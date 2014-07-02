@@ -1,4 +1,5 @@
 {% set user = app.security.token.user %}
+{% set flashbag = app.session.getFlashBag %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,6 +60,19 @@
                                     {% block breadcrumbs %}{# Include breadcrumbs commponent #}{% endblock %}
                                 </ul>
                             </div>
+
+                            {# Flash messages #}
+                            {% for message in flashbag.get('message') %}
+                                <div class="bg-info with-padding block-inner">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                            {% for message in flashbag.get('error') %}
+                                <div class="bg-error with-padding block-inner">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+
                             {# Main content #}
                             {% block content %}{% endblock %}
                         </div>

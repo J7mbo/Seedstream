@@ -21,8 +21,8 @@ routes:
   admin_servers_remove_client:
     pattern:  /admin/servers/remove-client
     defaults: { _controller: 'AdminController:removeClientAction' }
-    method:   'POST'
+    method:   POST
   admin_servers_add_client:
     pattern:  /admin/servers/add-client
-    defaults: { _controller: 'AdminnController:addClientAction' }
-    method:   'POST'
+    defaults: { _controller: 'AdminController:addClientAction' }
+    method:   POST

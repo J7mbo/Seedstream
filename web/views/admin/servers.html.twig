@@ -98,56 +98,49 @@
                 </h6>
             </div>
             <div class="panel-body">
-                <form id="add-client-form" class="form-horizontal" action="#" role="form">
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">Server:</label>
-                                <div class="col-sm-5">
-                                    <select name="server" class="form-control">
-                                        {% for server in servers %}
-                                            <option value="{{ server.id }}">{{ server.name }} - {{ server.ipAddress }}</option>
-                                        {% endfor %}
-                                    </select>
+                            {{ form_errors(form) }}
+                                <div class="form-group">
+                                    {{ form_label(form.server, 'Server:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                                    <div class="col-sm-5">
+                                        {{ form_widget(form.server, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    {{ form_label(form.client, 'Client:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                                    <div class="col-sm-5">
+                                        {{ form_widget(form.client, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
                                 </div>
-                                <label class="col-sm-1 control-label">Client:</label>
-                                <div class="col-sm-5">
-                                    <select name="type" class="form-control">
-                                        {% for i in availableClients %}
-                                            <option value="{{ i }}">{{ i }}</option>
-                                        {% endfor %}
-                                    </select>
+                                <div class="form-group">
+                                    {{ form_label(form.port, 'Port:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                                    <div class="col-sm-2">
+                                        {{ form_widget(form.port, {'attr': {'class': 'form-control', 'placeholder': '9091'}}) }}
+                                    </div>
+                                    {{ form_label(form.endPoint, 'Endpoint:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                                    <div class="col-sm-2">
+                                        {{ form_widget(form.endPoint, {'attr': {'class': 'form-control', 'placeholder': 'transmission/rpc'}}) }}
+                                    </div>
+                                    {{ form_label(form.authUsername, 'Username:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                                    <div class="col-sm-2">
+                                        {{ form_widget(form.authUsername, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    {{ form_label(form.authPassword, 'Password:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                                    <div class="col-sm-2">
+                                        {{ form_widget(form.authPassword, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">Port:</label>
-                                <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="9091" />
+                                <div class="form-actions text-right">
+                                    {{ form_widget(form.addClient, {'attr': {'class': 'btn btn-info'}}) }}
                                 </div>
-                                <label class="col-sm-1 control-label">Endpoint:</label>
-                                <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="transmission/rpc" />
-                                </div>
-                                <label class="col-sm-1 control-label">Username:</label>
-                                <div class="col-sm-2">
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <label class="col-sm-1 control-label">Password:</label>
-                                <div class="col-sm-2">
-                                    <input type="password" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-actions text-right">
-                                <button type="submit" class="btn btn-info">Add Client</button>
-                            </div>
+                            {{ form_rest(form) }}
+                            {{ form_end(form) }}
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-    {{ form(form) }}
 {% endblock %}
 
 {% block scripts %}
