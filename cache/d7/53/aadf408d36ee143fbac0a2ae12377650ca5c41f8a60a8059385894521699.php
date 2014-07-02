@@ -29,69 +29,71 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
         // line 1
         $context["user"] = $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "security"), "token"), "user");
         // line 2
+        $context["flashbag"] = $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "getFlashBag");
+        // line 3
         echo "
 <!DOCTYPE html>
 <html lang=\"en\">
     <head>
         ";
-        // line 6
+        // line 7
         $this->displayBlock('head', $context, $blocks);
-        // line 32
+        // line 33
         echo "    </head>
     <body>
         ";
-        // line 34
+        // line 35
         $this->displayBlock('body', $context, $blocks);
-        // line 69
+        // line 83
         echo "        ";
         $this->displayBlock('scripts', $context, $blocks);
-        // line 77
+        // line 91
         echo "    </body>
 </html>";
     }
 
-    // line 6
+    // line 7
     public function block_head($context, array $blocks = array())
     {
-        // line 7
+        // line 8
         echo "            <link href=\"http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all\" rel=\"stylesheet\" type=\"text/css\">
             <link href=\"";
-        // line 8
+        // line 9
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("css/bootstrap.min.css"), "html", null, true);
         echo "\" rel=\"stylesheet\" type=\"text/css\">
             <link href=\"";
-        // line 9
+        // line 10
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("css/icons.css"), "html", null, true);
         echo "\" rel=\"stylesheet\" type=\"text/css\">
             <link href=\"";
-        // line 10
+        // line 11
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("css/base.css"), "html", null, true);
         echo "\" rel=\"stylesheet\" type=\"text/css\">
             ";
-        // line 11
-        $this->displayBlock('stylesheets', $context, $blocks);
         // line 12
+        $this->displayBlock('stylesheets', $context, $blocks);
+        // line 13
         echo "            ";
         $this->displayBlock('headerscripts', $context, $blocks);
-        // line 13
+        // line 14
         echo "
             <title>";
-        // line 14
+        // line 15
         $this->displayBlock('title', $context, $blocks);
         echo " - Seedstream</title>
 
             ";
-        // line 17
+        // line 18
         echo "            ";
         if (call_user_func_array($this->env->getFunction('is_granted')->getCallable(), array("ROLE_USER"))) {
-            // line 18
+            // line 19
             echo "                <script type=\"text/javascript\">
                     var websockets = {
                         ws: null,
                         use: function() {
                             if (websockets.ws === null) {
                                 this.ws = new Websocket(\"ws://localhost:8080\", \"";
-            // line 23
+            // line 24
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "id"), "html", null, true);
             echo "\", \"";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "token"), "html", null, true);
@@ -104,51 +106,51 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
                 </script>
         ";
         }
-        // line 31
+        // line 32
         echo "        ";
     }
 
-    // line 11
+    // line 12
     public function block_stylesheets($context, array $blocks = array())
     {
     }
 
-    // line 12
+    // line 13
     public function block_headerscripts($context, array $blocks = array())
     {
     }
 
-    // line 14
+    // line 15
     public function block_title($context, array $blocks = array())
     {
     }
 
-    // line 34
+    // line 35
     public function block_body($context, array $blocks = array())
     {
-        // line 35
+        // line 36
         echo "            ";
         if (call_user_func_array($this->env->getFunction('is_granted')->getCallable(), array("ROLE_USER"))) {
-            // line 36
+            // line 37
             echo "                ";
             $this->displayBlock('navbar', $context, $blocks);
-            // line 39
+            // line 40
             echo "                <div class=\"page-container\">
                     ";
-            // line 40
+            // line 41
             $this->displayBlock('sidebar', $context, $blocks);
-            // line 43
+            // line 44
             echo "                    <div class=\"page-content\">
                         <div class=\"page-content-inner\">
                             ";
-            // line 46
+            // line 47
             echo "                            <div class=\"page-header\">
                                 <div class=\"page-title\">
                                     <h3>
                                         ";
-            // line 49
-            $this->displayBlock('header_title', $context, $blocks);
             // line 50
+            $this->displayBlock('header_title', $context, $blocks);
+            // line 51
             echo "                                        <small>Welcome ";
             echo twig_escape_filter($this->env, twig_title_string_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "username")), "html", null, true);
             echo "</small>
@@ -157,93 +159,131 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
                                 </div>
                             </div>
                             ";
-            // line 56
+            // line 57
             echo "                            <div class=\"breadcrumb-line\">
                                 <ul class=\"breadcrumb\">
                                     <li><a href=\"";
-            // line 58
+            // line 59
             echo $this->env->getExtension('routing')->getPath("home");
             echo "\">Home</a></li>
                                     ";
-            // line 59
-            $this->displayBlock('breadcrumbs', $context, $blocks);
             // line 60
+            $this->displayBlock('breadcrumbs', $context, $blocks);
+            // line 61
             echo "                                </ul>
                             </div>
+
                             ";
-            // line 63
+            // line 65
+            echo "                            ";
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["flashbag"]) ? $context["flashbag"] : $this->getContext($context, "flashbag")), "get", array(0 => "message"), "method"));
+            foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+                // line 66
+                echo "                                <div class=\"bg-info with-padding block-inner\">
+                                    ";
+                // line 67
+                echo twig_escape_filter($this->env, (isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "html", null, true);
+                echo "
+                                </div>
+                            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 70
+            echo "                            ";
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["flashbag"]) ? $context["flashbag"] : $this->getContext($context, "flashbag")), "get", array(0 => "error"), "method"));
+            foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+                // line 71
+                echo "                                <div class=\"bg-error with-padding block-inner\">
+                                    ";
+                // line 72
+                echo twig_escape_filter($this->env, (isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "html", null, true);
+                echo "
+                                </div>
+                            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 75
+            echo "
+                            ";
+            // line 77
             echo "                            ";
             $this->displayBlock('content', $context, $blocks);
-            // line 64
+            // line 78
             echo "                        </div>
                     </div>
                 </div>
                 ";
         }
-        // line 68
+        // line 82
         echo "            ";
     }
 
-    // line 36
+    // line 37
     public function block_navbar($context, array $blocks = array())
     {
-        // line 37
+        // line 38
         echo "                    ";
         $this->env->loadTemplate("components/navbar/navbar.html.twig")->display($context);
-        // line 38
+        // line 39
         echo "                ";
     }
 
-    // line 40
+    // line 41
     public function block_sidebar($context, array $blocks = array())
     {
-        // line 41
+        // line 42
         echo "                        ";
         $this->env->loadTemplate("components/sidebar/sidebar.html.twig")->display($context);
-        // line 42
+        // line 43
         echo "                    ";
     }
 
-    // line 49
+    // line 50
     public function block_header_title($context, array $blocks = array())
     {
     }
 
-    // line 59
+    // line 60
     public function block_breadcrumbs($context, array $blocks = array())
     {
     }
 
-    // line 63
+    // line 77
     public function block_content($context, array $blocks = array())
     {
     }
 
-    // line 69
+    // line 83
     public function block_scripts($context, array $blocks = array())
     {
-        // line 70
+        // line 84
         echo "            <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/jquery.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 71
+        // line 85
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 72
+        // line 86
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/base.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 73
+        // line 87
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/autobahn.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 74
+        // line 88
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/when.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 75
+        // line 89
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/websocket.js"), "html", null, true);
         echo "\"></script>
         ";
@@ -261,6 +301,6 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
 
     public function getDebugInfo()
     {
-        return array (  247 => 75,  243 => 74,  239 => 73,  235 => 72,  231 => 71,  226 => 70,  223 => 69,  218 => 63,  213 => 59,  208 => 49,  204 => 42,  201 => 41,  198 => 40,  194 => 38,  191 => 37,  188 => 36,  184 => 68,  178 => 64,  175 => 63,  171 => 60,  169 => 59,  165 => 58,  161 => 56,  152 => 50,  150 => 49,  145 => 46,  141 => 43,  139 => 40,  136 => 39,  133 => 36,  130 => 35,  127 => 34,  122 => 14,  117 => 12,  112 => 11,  108 => 31,  95 => 23,  88 => 18,  85 => 17,  80 => 14,  77 => 13,  74 => 12,  72 => 11,  68 => 10,  60 => 8,  57 => 7,  54 => 6,  49 => 77,  44 => 34,  40 => 32,  32 => 2,  30 => 1,  70 => 17,  64 => 9,  62 => 14,  56 => 11,  51 => 10,  46 => 69,  41 => 7,  38 => 6,  35 => 5,  29 => 3,);
+        return array (  287 => 89,  283 => 88,  279 => 87,  275 => 86,  271 => 85,  266 => 84,  263 => 83,  258 => 77,  253 => 60,  248 => 50,  244 => 43,  241 => 42,  238 => 41,  234 => 39,  231 => 38,  228 => 37,  224 => 82,  218 => 78,  215 => 77,  212 => 75,  203 => 72,  200 => 71,  195 => 70,  186 => 67,  183 => 66,  178 => 65,  173 => 61,  171 => 60,  167 => 59,  163 => 57,  154 => 51,  152 => 50,  147 => 47,  143 => 44,  141 => 41,  138 => 40,  135 => 37,  132 => 36,  129 => 35,  124 => 15,  119 => 13,  114 => 12,  110 => 32,  97 => 24,  90 => 19,  87 => 18,  82 => 15,  79 => 14,  76 => 13,  74 => 12,  70 => 11,  66 => 10,  62 => 9,  59 => 8,  56 => 7,  51 => 91,  48 => 83,  46 => 35,  42 => 33,  40 => 7,  34 => 3,  30 => 1,  68 => 17,  63 => 16,  60 => 15,  55 => 12,  52 => 11,  47 => 8,  44 => 7,  38 => 5,  32 => 2,);
     }
 }

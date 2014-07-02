@@ -64,10 +64,10 @@ class Server extends \App\Model\Entity\Server implements \Doctrine\ORM\Proxy\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'App\\Model\\Entity\\Server' . "\0" . 'id', '' . "\0" . 'App\\Model\\Entity\\Server' . "\0" . 'ipAddress', '' . "\0" . 'App\\Model\\Entity\\Server' . "\0" . 'name', '' . "\0" . 'App\\Model\\Entity\\Server' . "\0" . 'isActive', '' . "\0" . 'App\\Model\\Entity\\Server' . "\0" . 'clients');
+            return array('__isInitialized__', 'id', 'ipAddress', 'name', 'isActive', 'clients');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'App\\Model\\Entity\\Server' . "\0" . 'id', '' . "\0" . 'App\\Model\\Entity\\Server' . "\0" . 'ipAddress', '' . "\0" . 'App\\Model\\Entity\\Server' . "\0" . 'name', '' . "\0" . 'App\\Model\\Entity\\Server' . "\0" . 'isActive', '' . "\0" . 'App\\Model\\Entity\\Server' . "\0" . 'clients');
+        return array('__isInitialized__', 'id', 'ipAddress', 'name', 'isActive', 'clients');
     }
 
     /**
@@ -296,6 +296,17 @@ class Server extends \App\Model\Entity\Server implements \Doctrine\ORM\Proxy\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeClient', array($client));
 
         return parent::removeClient($client);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __toString()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', array());
+
+        return parent::__toString();
     }
 
 }
