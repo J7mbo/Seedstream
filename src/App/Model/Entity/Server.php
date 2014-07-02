@@ -21,35 +21,35 @@ class Server
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var IpAddress
      *
      * @ORM\Embedded(class="App\Model\Entity\ValueObjects\Server\IpAddress")
      */
-    private $ipAddress;
+    protected $ipAddress;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=100, nullable=false)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="status", type="boolean", nullable=false)
      */
-    private $isActive = true;
+    protected $isActive = true;
 
     /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Client", mappedBy="server", cascade={"all"})
      */
-    private $clients;
+    protected $clients;
 
     /**
      * @constructor
@@ -61,7 +61,7 @@ class Server
     {
         $this->clients = new ArrayCollection();
         $this->ipAddress = $ipAddress;
-        $this->name = $name;
+        $this->name = strtolower($name);
     }
 
     /**
@@ -101,7 +101,7 @@ class Server
      */
     public function changeName($name)
     {
-        $this->name = $name;
+        $this->name = strtolower($name);
     }
 
     /**
@@ -180,5 +180,15 @@ class Server
         }
 
         return $this;
+    }
+
+    /**
+     * Get the name and ip address of the server
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf('%s - %s', $this->name, $this->ipAddress);
     }
 }

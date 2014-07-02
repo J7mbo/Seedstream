@@ -20,42 +20,42 @@ class Client
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=100, nullable=false)
      */
-    private $type;
+    protected $type;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="port", type="integer", length=5, nullable=false)
      */
-    private $port;
+    protected $port;
 
     /**
      * @var string
      *
      * @ORM\Column(name="endpoint", type="string", length=20, nullable=false)
      */
-    private $endPoint;
+    protected $endPoint;
 
     /**
      * @var string
      *
      * @ORM\Column(name="auth_username", type="string", length=100, nullable=false)
      */
-    private $authUsername;
+    protected $authUsername;
 
     /**
      * @var string
      *
      * @ORM\Column(name="auth_password", type="string", length=100, nullable=false)
      */
-    private $authPassword;
+    protected $authPassword;
 
     /**
      * @var Server
@@ -63,14 +63,14 @@ class Client
      * @ORM\ManyToOne(targetEntity="Server", inversedBy="clients")
      * @ORM\JoinColumn(name="server_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $server;
+    protected $server;
 
     /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Download", mappedBy="client", cascade={"persist", "remove"})
      */
-    private $downloads;
+    protected $downloads;
 
     /**
      * @constructor
@@ -221,7 +221,9 @@ class Client
      */
     public function removeServer(Server $server)
     {
-        $this->server = null;
+        /** For PHPstorm code highlighting reasons **/
+        $server = is_null($server) ?: null;
+        $this->server = $server;
     }
 
     /**
