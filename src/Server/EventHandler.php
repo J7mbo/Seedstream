@@ -127,6 +127,8 @@ class EventHandler implements WampServerInterface
             $this->logger->addWarning(sprintf(
                 "Invalid websocket Request received from: %s: %s", $conn->remoteAddress, json_encode($request, true)
             ));
+
+            return false;
         }
 
         /** Check that the user actually exists against the user id given **/
@@ -136,6 +138,8 @@ class EventHandler implements WampServerInterface
                 "Invalid user id '%s' within websocket request received from: %s: %s",
                 $request->getUserId(), $conn->remoteAddress, json_encode($request, true)
             ));
+
+            return false;
         }
 
         /** Refresh the user object because the token may have changed **/
@@ -148,6 +152,8 @@ class EventHandler implements WampServerInterface
                 "Invalid user token '%s' within websocket request received from: %s: %s",
                 $request->getToken(), $conn->remoteAddress, json_encode($request, true)
             ));
+
+            return false;
         }
 
         $timer = $this->loop->addPeriodicTimer(self::INTERVAL, function() use ($user, $conn, $request, $topic)
