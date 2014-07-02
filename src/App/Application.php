@@ -4,12 +4,14 @@ namespace App;
 
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider,
     Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder,
+    Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension,
     Symfony\Component\EventDispatcher\EventDispatcher,
     Symfony\Component\Security\Core\SecurityContext,
     Doctrine\ORM\Mapping\Driver\AnnotationDriver,
     Doctrine\Common\Annotations\AnnotationReader,
     Silex\Provider\UrlGeneratorServiceProvider,
     Silex\Provider\TranslationServiceProvider,
+    App\Model\Form\Extensions\ManagerRegistry,
     Silex\Provider\ValidatorServiceProvider,
     Silex\Provider\SecurityServiceProvider,
     Silex\Provider\DoctrineServiceProvider,
@@ -21,6 +23,9 @@ use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider,
     Silex\Provider\FormServiceProvider,
     Doctrine\Common\Cache\ArrayCache,
     Doctrine\Common\Cache\ApcCache,
+    Doctrine\ORM\EntityManager,
+    Doctrine\ORM\Configuration,
+    Doctrine\DBAL\Connection,
     Auryn\ReflectionPool,
     Auryn\Provider;
 
@@ -142,12 +147,13 @@ class Application extends \Silex\Application
             ]
         ]);
 
-        /** @var \Doctrine\DBAL\Connection $orm */
+        /** @var Connection $orm */
         $orm = $app['orm.em'];
 
-        /** @var \Doctrine\ORM\Configuration $ormConfig */
+        /** @var Configuration $ormConfig */
         $ormConfig = $orm->getConfiguration();
 
+        /** Allows us to use Entity Annotations **/
         $ormConfig->setMetadataDriverImpl(new AnnotationDriver(new AnnotationReader, [
             __DIR__ . '/Model/Entity'
         ]));
@@ -163,10 +169,17 @@ class Application extends \Silex\Application
         ]);
 
         $app->register(new ValidatorServiceProvider);
+        $app->register(new FormServiceProvider);
 
-        $app->register(new FormServiceProvider, [
-            'form.secret' => uniqid(rand(), true)
-        ]);
+        /** Allows the form builder to use the 'entity' type **/
+        $app['form.extensions'] = $app->share($app->extend('form.extensions', function ($extensions) use ($app) {
+            $manager = new ManagerRegistry(null, array(), array('default'), null, null, '\Doctrine\ORM\Proxy\Proxy');
+
+            $manager->setContainer($app);
+            $extensions[] = new DoctrineOrmExtension($manager);
+
+            return $extensions;
+        }));
 
         /** @var \Twig_Environment $twig */
         $twig = $app['twig'];
@@ -193,7 +206,7 @@ class Application extends \Silex\Application
         $accessRules = $this->config['security']['access_rules'];
 
         $firewalls['default']['users'] = $this->share(function($app) {
-            /** @var \Doctrine\ORM\EntityManager $orm */
+            /** @var EntityManager $orm */
             $orm = $app['orm.em'];
             return $orm->getRepository('\App\Model\Entity\User');
         });

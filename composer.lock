@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c9d865922b830f4e65338eb5b3700ff5",
+    "hash": "5e81a66bd00a57e6fd8bb3357c01aa12",
     "packages": [
         {
             "name": "cboden/ratchet",
@@ -498,12 +498,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "e7a917e9eddd38e9fb37afd6ef95e1b542304a53"
+                "reference": "5eb36c7a643d5e44f0eee4ca39e56088527ce146"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/e7a917e9eddd38e9fb37afd6ef95e1b542304a53",
-                "reference": "e7a917e9eddd38e9fb37afd6ef95e1b542304a53",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/5eb36c7a643d5e44f0eee4ca39e56088527ce146",
+                "reference": "5eb36c7a643d5e44f0eee4ca39e56088527ce146",
                 "shasum": ""
             },
             "require": {
@@ -564,7 +564,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-06-27 13:03:59"
+            "time": "2014-06-30 14:48:03"
         },
         {
             "name": "doctrine/inflector",
@@ -701,12 +701,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "c370426792edda8290843e601e9f95d86a7e873f"
+                "reference": "8c0166d3bf72366085a0f5485d622f7cd30f9071"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/c370426792edda8290843e601e9f95d86a7e873f",
-                "reference": "c370426792edda8290843e601e9f95d86a7e873f",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/8c0166d3bf72366085a0f5485d622f7cd30f9071",
+                "reference": "8c0166d3bf72366085a0f5485d622f7cd30f9071",
                 "shasum": ""
             },
             "require": {
@@ -770,7 +770,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-06-27 20:37:36"
+            "time": "2014-07-02 03:11:53"
         },
         {
             "name": "entea/silex-twig-simple-asset-extension",
@@ -1106,12 +1106,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/J7mbo/TorrentPHP.git",
-                "reference": "4482570afb4896504bcf74eec757aa0145765738"
+                "reference": "b51edc8d44f14f5b7adb02466820b3a608171948"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/J7mbo/TorrentPHP/zipball/4482570afb4896504bcf74eec757aa0145765738",
-                "reference": "4482570afb4896504bcf74eec757aa0145765738",
+                "url": "https://api.github.com/repos/J7mbo/TorrentPHP/zipball/b51edc8d44f14f5b7adb02466820b3a608171948",
+                "reference": "b51edc8d44f14f5b7adb02466820b3a608171948",
                 "shasum": ""
             },
             "require": {
@@ -1146,7 +1146,7 @@
                 "php",
                 "torrent"
             ],
-            "time": "2014-06-19 16:22:35"
+            "time": "2014-07-01 10:43:02"
         },
         {
             "name": "monolog/monolog",
@@ -1830,6 +1830,75 @@
             "description": "Symfony Debug Component",
             "homepage": "http://symfony.com",
             "time": "2014-06-16 11:52:56"
+        },
+        {
+            "name": "symfony/doctrine-bridge",
+            "version": "dev-master",
+            "target-dir": "Symfony/Bridge/Doctrine",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/DoctrineBridge.git",
+                "reference": "e8d7bd688df6531dbf9351f077e77a1f37bf5a83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/DoctrineBridge/zipball/e8d7bd688df6531dbf9351f077e77a1f37bf5a83",
+                "reference": "e8d7bd688df6531dbf9351f077e77a1f37bf5a83",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "~2.2",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "doctrine/data-fixtures": "1.0.*",
+                "doctrine/dbal": "~2.2",
+                "doctrine/orm": "~2.2,>=2.2.3",
+                "symfony/dependency-injection": "~2.0",
+                "symfony/expression-language": "~2.2",
+                "symfony/form": "~2.2",
+                "symfony/http-kernel": "~2.2",
+                "symfony/security": "~2.2",
+                "symfony/stopwatch": "~2.2",
+                "symfony/validator": "~2.2"
+            },
+            "suggest": {
+                "doctrine/data-fixtures": "",
+                "doctrine/dbal": "",
+                "doctrine/orm": "",
+                "symfony/form": "",
+                "symfony/validator": ""
+            },
+            "type": "symfony-bridge",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Bridge\\Doctrine\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Doctrine Bridge",
+            "homepage": "http://symfony.com",
+            "time": "2014-06-20 17:41:51"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -2808,12 +2877,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Validator.git",
-                "reference": "5759a839a11dfcd95ba75c2bd4e9de5c9c1e8c61"
+                "reference": "75226f9d218569723bdb546132c6df416a0363d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Validator/zipball/5759a839a11dfcd95ba75c2bd4e9de5c9c1e8c61",
-                "reference": "5759a839a11dfcd95ba75c2bd4e9de5c9c1e8c61",
+                "url": "https://api.github.com/repos/symfony/Validator/zipball/75226f9d218569723bdb546132c6df416a0363d8",
+                "reference": "75226f9d218569723bdb546132c6df416a0363d8",
                 "shasum": ""
             },
             "require": {
@@ -2871,7 +2940,7 @@
             ],
             "description": "Symfony Validator Component",
             "homepage": "http://symfony.com",
-            "time": "2014-06-24 13:12:22"
+            "time": "2014-06-27 16:43:06"
         },
         {
             "name": "symfony/yaml",
@@ -3366,6 +3435,7 @@
         "monolog/monolog": 20,
         "symfony/translation": 20,
         "rdlowrey/auryn": 20,
+        "symfony/doctrine-bridge": 20,
         "ircmaxell/password-compat": 20,
         "dflydev/doctrine-orm-service-provider": 20,
         "entea/silex-twig-simple-asset-extension": 20,

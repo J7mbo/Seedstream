@@ -2,14 +2,17 @@
 
 namespace App\Controllers;
 
-use App\Model\Form\ClientType;
-use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\Form\FormFactory;
-use Symfony\Component\HttpFoundation\JsonResponse,
+use Symfony\Component\HttpFoundation\RedirectResponse,
+    Symfony\Component\HttpFoundation\Session\Session,
+    Symfony\Component\Routing\Generator\UrlGenerator,
+    Symfony\Component\HttpFoundation\JsonResponse,
+    App\Model\Factory\RedirectResponseFactory,
     Symfony\Component\HttpFoundation\Request,
     App\Model\Repository\ClientRepository,
     App\Model\Repository\ServerRepository,
+    Symfony\Component\Form\FormFactory,
     Doctrine\ORM\EntityManager,
+    App\Model\Form\ClientType,
     App\Model\Entity\Server,
     App\Model\Entity\Client;
 
@@ -27,16 +30,13 @@ class AdminController
 
     public function serversAction(
         ServerRepository $serverRepository,
-        FormBuilder $formBuilder,
         FormFactory $formFactory,
         ClientType $clientFormType
     )
     {
-        $servers = $serverRepository->findAll();
-
+        $servers     = $serverRepository->findAll();
         $formBuilder = $formFactory->createBuilder($clientFormType);
-
-        $form = $formBuilder->getForm()->createView();
+        $form        = $formBuilder->getForm()->createView();
 
         return [
             'servers' => $servers,
@@ -82,8 +82,53 @@ class AdminController
         }
     }
 
-    public function addClientAction(Request $request, FormBuilder $formBuilder, EntityManager $em)
+    /**
+     * Hit when the user submits a new client using the ClientType form
+     *
+     * @param UrlGenerator            $urlGenerator
+     * @param RedirectResponseFactory $redirectResponseFactory
+     * @param Request                 $request
+     * @param ClientType              $clientFormType
+     * @param FormFactory             $formFactory
+     * @param Session                 $session
+     * @param EntityManager           $em
+     *
+     * @return RedirectResponse
+     */
+    public function addClientAction(
+        UrlGenerator            $urlGenerator,
+        RedirectResponseFactory $redirectResponseFactory,
+        Request                 $request,
+        ClientType              $clientFormType,
+        FormFactory             $formFactory,
+        Session                 $session,
+        EntityManager           $em
+    )
     {
+        $formBuilder = $formFactory->createBuilder($clientFormType);
 
+        $form = $formBuilder->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid())
+        {
+            /** @var Client $client **/
+            $client = $form->getData();
+            $em->persist($client);
+            $em->flush();
+
+            $session->getFlashBag()->add('message',
+                sprintf('Successfully added %s client on port %s', $client->getType(), $client->getPort())
+            );
+        }
+        else
+        {
+            $session->getFlashBag()->add('error',
+                sprintf("Couldn't add client - please refresh and try again")
+            );
+        }
+
+        return $redirectResponseFactory->build($urlGenerator->generate('admin_servers'));
     }
 } 

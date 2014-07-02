@@ -31,6 +31,7 @@
         "symfony/security-csrf": "~2.3",
         "symfony/translation": "2.6.*@dev",
         "rdlowrey/auryn": "dev-v1.0.0-dev",
+        "symfony/doctrine-bridge": "2.6.*@dev",
         "ircmaxell/password-compat": "dev-master",
         "dflydev/doctrine-orm-service-provider": "1.0.*@dev",
         "entea/silex-twig-simple-asset-extension": "dev-master",
