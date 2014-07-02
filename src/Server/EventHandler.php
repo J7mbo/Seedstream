@@ -166,14 +166,20 @@ class EventHandler implements WampServerInterface
             catch (ActionException $e)
             {
                 $this->logger->addWarning($e->getMessage());
+
+                return false;
             }
             catch (ClientException $e)
             {
                 $this->logger->addError("Something went wrong with the torrent client: " . $e->getMessage());
+
+                return false;
             }
             catch (\Exception $e)
             {
                 $this->logger->addError("Something else went wrong: " . $e->getMessage());
+
+                return false;
             }
         });
 
