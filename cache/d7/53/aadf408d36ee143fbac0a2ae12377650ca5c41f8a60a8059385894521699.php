@@ -44,10 +44,10 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
         ";
         // line 35
         $this->displayBlock('body', $context, $blocks);
-        // line 83
+        // line 85
         echo "        ";
         $this->displayBlock('scripts', $context, $blocks);
-        // line 91
+        // line 93
         echo "    </body>
 </html>";
     }
@@ -181,8 +181,9 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
                 // line 66
                 echo "                                <div class=\"bg-info with-padding block-inner\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>
                                     ";
-                // line 67
+                // line 68
                 echo twig_escape_filter($this->env, (isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "html", null, true);
                 echo "
                                 </div>
@@ -191,15 +192,16 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 70
+            // line 71
             echo "                            ";
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["flashbag"]) ? $context["flashbag"] : $this->getContext($context, "flashbag")), "get", array(0 => "error"), "method"));
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-                // line 71
-                echo "                                <div class=\"bg-error with-padding block-inner\">
-                                    ";
                 // line 72
+                echo "                                <div class=\"bg-error with-padding block-inner\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>
+                                    ";
+                // line 74
                 echo twig_escape_filter($this->env, (isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "html", null, true);
                 echo "
                                 </div>
@@ -208,19 +210,19 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 75
+            // line 77
             echo "
                             ";
-            // line 77
+            // line 79
             echo "                            ";
             $this->displayBlock('content', $context, $blocks);
-            // line 78
+            // line 80
             echo "                        </div>
                     </div>
                 </div>
                 ";
         }
-        // line 82
+        // line 84
         echo "            ";
     }
 
@@ -254,36 +256,36 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
     {
     }
 
-    // line 77
+    // line 79
     public function block_content($context, array $blocks = array())
     {
     }
 
-    // line 83
+    // line 85
     public function block_scripts($context, array $blocks = array())
     {
-        // line 84
+        // line 86
         echo "            <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/jquery.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 85
+        // line 87
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 86
+        // line 88
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/base.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 87
+        // line 89
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/autobahn.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 88
+        // line 90
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/when.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 89
+        // line 91
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/websocket.js"), "html", null, true);
         echo "\"></script>
         ";
@@ -301,6 +303,6 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
 
     public function getDebugInfo()
     {
-        return array (  287 => 89,  283 => 88,  279 => 87,  275 => 86,  271 => 85,  266 => 84,  263 => 83,  258 => 77,  253 => 60,  248 => 50,  244 => 43,  241 => 42,  238 => 41,  234 => 39,  231 => 38,  228 => 37,  224 => 82,  218 => 78,  215 => 77,  212 => 75,  203 => 72,  200 => 71,  195 => 70,  186 => 67,  183 => 66,  178 => 65,  173 => 61,  171 => 60,  167 => 59,  163 => 57,  154 => 51,  152 => 50,  147 => 47,  143 => 44,  141 => 41,  138 => 40,  135 => 37,  132 => 36,  129 => 35,  124 => 15,  119 => 13,  114 => 12,  110 => 32,  97 => 24,  90 => 19,  87 => 18,  82 => 15,  79 => 14,  76 => 13,  74 => 12,  70 => 11,  66 => 10,  62 => 9,  59 => 8,  56 => 7,  51 => 91,  48 => 83,  46 => 35,  42 => 33,  40 => 7,  34 => 3,  30 => 1,  68 => 17,  63 => 16,  60 => 15,  55 => 12,  52 => 11,  47 => 8,  44 => 7,  38 => 5,  32 => 2,);
+        return array (  289 => 91,  285 => 90,  281 => 89,  277 => 88,  273 => 87,  268 => 86,  265 => 85,  260 => 79,  255 => 60,  250 => 50,  246 => 43,  243 => 42,  240 => 41,  236 => 39,  233 => 38,  230 => 37,  226 => 84,  220 => 80,  217 => 79,  214 => 77,  205 => 74,  201 => 72,  196 => 71,  187 => 68,  183 => 66,  178 => 65,  173 => 61,  171 => 60,  167 => 59,  163 => 57,  154 => 51,  152 => 50,  147 => 47,  143 => 44,  141 => 41,  138 => 40,  135 => 37,  132 => 36,  129 => 35,  124 => 15,  119 => 13,  114 => 12,  110 => 32,  97 => 24,  90 => 19,  87 => 18,  82 => 15,  79 => 14,  76 => 13,  74 => 12,  70 => 11,  66 => 10,  62 => 9,  59 => 8,  56 => 7,  51 => 93,  48 => 85,  46 => 35,  42 => 33,  40 => 7,  34 => 3,  32 => 2,  30 => 1,);
     }
 }
