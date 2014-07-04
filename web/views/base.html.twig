@@ -43,6 +43,7 @@
                     {% endblock %}
                     <div class="page-content">
                         <div class="page-content-inner">
+
                             {# Header #}
                             <div class="page-header">
                                 <div class="page-title">
@@ -53,6 +54,7 @@
 
                                 </div>
                             </div>
+
                             {# Breadcrumbs #}
                             <div class="breadcrumb-line">
                                 <ul class="breadcrumb">
@@ -62,15 +64,24 @@
                             </div>
 
                             {# Flash messages #}
-                            {% for message in flashbag.get('message') %}
-                                <div class="bg-info with-padding block-inner">
+                            {% for message in flashbag.get('success') %}
+                                <div class="alert alert-success">
                                     <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <i class="glyphicon glyphicon-ok-circle"></i>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                            {% for message in flashbag.get('message') %}
+                                <div class="alert alert-info">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <i class="glyphicon glyphicon-info-sign"></i>
                                     {{ message }}
                                 </div>
                             {% endfor %}
                             {% for message in flashbag.get('error') %}
-                                <div class="bg-error with-padding block-inner">
+                                <div class="alert alert-danger">
                                     <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <i class="glyphicon glyphicon-remove-circle"></i>
                                     {{ message }}
                                 </div>
                             {% endfor %}
