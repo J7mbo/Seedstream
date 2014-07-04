@@ -5,7 +5,6 @@ namespace App\Controllers;
 use Symfony\Component\HttpFoundation\RedirectResponse,
     Symfony\Component\HttpFoundation\Session\Session,
     Symfony\Component\Routing\Generator\UrlGenerator,
-    Symfony\Component\HttpFoundation\JsonResponse,
     App\Model\Factory\RedirectResponseFactory,
     Symfony\Component\HttpFoundation\Request,
     App\Model\Repository\ClientRepository,
@@ -23,11 +22,25 @@ use Symfony\Component\HttpFoundation\RedirectResponse,
  */
 class AdminController
 {
+    /**
+     * Displays the admin page
+     *
+     * @return array
+     */
     public function indexAction()
     {
         return [];
     }
 
+    /**
+     * Displays the the servers and clients page
+     *
+     * @param ServerRepository $serverRepository
+     * @param FormFactory      $formFactory
+     * @param ClientType       $clientFormType
+     *
+     * @return array Servers / clients list and the add client form
+     */
     public function serversAction(
         ServerRepository $serverRepository,
         FormFactory $formFactory,
@@ -44,16 +57,30 @@ class AdminController
         ];
     }
 
+    /**
+     * Hit when the user removes a client
+     *
+     * Requires a POST request with the 'id' parameter containing the client id
+     *
+     * @param Request          $request
+     * @param ClientRepository $clientRepository
+     * @param EntityManager    $em
+     * @param Session          $session
+     *
+     * @return array
+     */
     public function removeClientAction(
-        Request          $request,
-        ClientRepository $clientRepository,
-        EntityManager    $em,
-        JsonResponse     $response
+        Request                 $request,
+        ClientRepository        $clientRepository,
+        EntityManager           $em,
+        Session                 $session
     )
     {
         if (!$request->request->has('id'))
         {
-            return $response->setData(['status' => 'failure']);
+            $session->getFlashBag()->add('error',
+                sprintf("Couldn't delete client - please refresh and try again")
+            );
         }
 
         $clientId = $request->request->get('id');
@@ -61,7 +88,9 @@ class AdminController
         /** @var Client $client **/
         if (($client = $clientRepository->find($clientId)) === null)
         {
-            return $response->setData(['status' => 'failure']);
+            $session->getFlashBag()->add('error',
+                sprintf("Couldn't delete client - please refresh and try again")
+            );
         }
 
         try
@@ -74,12 +103,18 @@ class AdminController
             $em->persist($server);
             $em->flush();
 
-            return $response->setData(['status' => 'success']);
+            $session->getFlashBag()->add('message',
+                sprintf('Successfully removed %s client on port %s', $client->getType(), $client->getPort())
+            );
         }
         catch (\Exception $e)
         {
-            return $response->setData(['status' => 'failure']);
+            $session->getFlashBag()->add('error',
+                sprintf("Couldn't delete client - please refresh and try again")
+            );
         }
+
+        return [];
     }
 
     /**
