@@ -35,11 +35,9 @@
                             <thead>
                                 <tr>
                                     {% if server.clients.count == 0 %}
-                                        <tr>
-                                            <td colspan="{{ clientTableFields|length + 1 }}">
-                                                There are no clients for this server yet. <a class="add-server-btn">Add one</a>?
-                                            </td>
-                                        </tr>
+                                        <td colspan="{{ clientTableFields|length + 1 }}">
+                                            There are no clients for this server yet. <a class="add-server-btn">Add one</a>?
+                                        </td>
                                     {% else %}
                                         {% for i in clientTableFields %}
                                             <th>{{ i|title }}</th>
@@ -134,10 +132,9 @@
                                     {{ form_widget(form.addClient, {'attr': {'class': 'btn btn-info'}}) }}
                                 </div>
                             {{ form_rest(form) }}
-                            {{ form_end(form) }}
                         </div>
                     </div>
-                </form>
+                {{ form_end(form) }}
             </div>
         </div>
     </div>
