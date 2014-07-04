@@ -198,6 +198,8 @@ class EventHandler implements WampServerInterface
             "User %s (id: %d) subscribed to %s, from: %s",
             $user->getUsername(), $user->getId(), $request->getTopic(), $conn->remoteAddress
         ));
+
+        return true;
     }
 
     /**
