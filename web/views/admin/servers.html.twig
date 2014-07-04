@@ -17,6 +17,18 @@
 {% block content %}
     <div class="col-md-13">
 
+        {# Welcome Message #}
+        <div class="callout callout-info">
+            <h5>Server Listing</h5>
+            <p>
+                Here's a list of all your servers. Click on each one to view / hide associated clients.
+                You can delete / add clients at will.
+                <br />
+                If you add a new client, no downloads will be
+                associated with it until they are added within Seedstream.
+            </p>
+        </div>
+
         {# Server / Client Listing #}
         <div class="panel-group block">
             {% for server in servers %}
