@@ -11,9 +11,6 @@
 {# The fields to display for each client, for each server, within the table below #}
 {% set clientTableFields = ['type', 'port', 'endpoint', 'authUsername', 'authPassword'] %}
 
-{# The client types to display in the add client form #}
-{% set availableClients = ['transmission', 'deluge'] %}
-
 {% block content %}
     <div class="col-md-13">
 
@@ -44,7 +41,7 @@
                                 <tr>
                                     {% if server.clients.count == 0 %}
                                         <td colspan="{{ clientTableFields|length + 1 }}">
-                                            There are no clients for this server yet. <a class="add-server-btn">Add one</a>?
+                                            There are no clients for this server yet. <a href="{{ path('admin_servers_new_client_form') }}" class="add-server-btn">Add one</a>?
                                         </td>
                                     {% else %}
                                         {% for i in clientTableFields %}
@@ -96,60 +93,7 @@
         {# Action Buttons #}
         <div class="col-sm-13 text-right">
             <button class="btn btn-info">Add Server</button>
-            <button class="btn btn-info">Add Client</button>
-        </div>
-
-        <hr />
-
-        {# Add new client form #}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h6 class="panel-title">
-                    <i class="icon-sidebar-button"></i>
-                    Add New Client
-                </h6>
-            </div>
-            <div class="panel-body">
-                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-                    <div class="row">
-                        <div class="col-md-12">
-                            {{ form_errors(form) }}
-                                <div class="form-group">
-                                    {{ form_label(form.server, 'Server:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
-                                    <div class="col-sm-5">
-                                        {{ form_widget(form.server, {'attr': {'class': 'form-control'}}) }}
-                                    </div>
-                                    {{ form_label(form.client, 'Client:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
-                                    <div class="col-sm-5">
-                                        {{ form_widget(form.client, {'attr': {'class': 'form-control'}}) }}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    {{ form_label(form.port, 'Port:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
-                                    <div class="col-sm-2">
-                                        {{ form_widget(form.port, {'attr': {'class': 'form-control', 'placeholder': '9091'}}) }}
-                                    </div>
-                                    {{ form_label(form.endPoint, 'Endpoint:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
-                                    <div class="col-sm-2">
-                                        {{ form_widget(form.endPoint, {'attr': {'class': 'form-control', 'placeholder': 'transmission/rpc'}}) }}
-                                    </div>
-                                    {{ form_label(form.authUsername, 'Username:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
-                                    <div class="col-sm-2">
-                                        {{ form_widget(form.authUsername, {'attr': {'class': 'form-control'}}) }}
-                                    </div>
-                                    {{ form_label(form.authPassword, 'Password:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
-                                    <div class="col-sm-2">
-                                        {{ form_widget(form.authPassword, {'attr': {'class': 'form-control'}}) }}
-                                    </div>
-                                </div>
-                                <div class="form-actions text-right">
-                                    {{ form_widget(form.addClient, {'attr': {'class': 'btn btn-info'}}) }}
-                                </div>
-                            {{ form_rest(form) }}
-                        </div>
-                    </div>
-                {{ form_end(form) }}
-            </div>
+            <a href="{{ path('admin_servers_new_client_form') }}"><button class="btn btn-info">Add Client</button></a>
         </div>
     </div>
 {% endblock %}
@@ -157,6 +101,5 @@
 {% block scripts %}
     {{ parent() }}
     <script type="text/javascript"> var removeClientUrl = '{{ path('admin_servers_remove_client') }}'; </script>
-    <script src="{{ asset('js/rowslideup.js') }}"></script>
     <script src="{{ asset('js/servers.js') }}"></script>
 {% endblock %}

@@ -1,0 +1,78 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Admin > New Client{% endblock %}
+
+{% block header_title %}New Client{% endblock %}
+
+{% block breadcrumbs %}
+    {% include("components/breadcrumbs/breadcrumbs.html.twig") with {'crumbs': [{'name': 'admin', 'url': 'admin' }, {'name': 'servers', 'url': 'admin_servers' }, {'name': 'new client', 'url': 'admin_servers_new_client_form'}]} %}
+{% endblock %}
+
+{# The client types to display in the add client form #}
+{% set availableClients = ['transmission', 'deluge'] %}
+
+{% block content %}
+    <div class="col-md-13">
+
+        {# Welcome Message #}
+        <div class="callout callout-info">
+            <h5>New Client Form</h5>
+            <p>
+                Here you can add a new client to the pool of clients available for use. Note: any clients added
+                will not have any downloads associated with them. Only new downloads added within the platform
+                will have a client associated with them.
+            </p>
+        </div>
+
+        {# Add new client form #}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h6 class="panel-title">
+                    <i class="icon-sidebar-button"></i>
+                    Add New Client
+                </h6>
+            </div>
+            <div class="panel-body">
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_errors(form) }}
+                        <div class="form-group">
+                            {{ form_label(form.server, 'Server:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                            <div class="col-sm-5">
+                                {{ form_widget(form.server, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            {{ form_label(form.client, 'Client:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                            <div class="col-sm-5">
+                                {{ form_widget(form.client, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.port, 'Port:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                            <div class="col-sm-2">
+                                {{ form_widget(form.port, {'attr': {'class': 'form-control', 'placeholder': '9091'}}) }}
+                            </div>
+                            {{ form_label(form.endPoint, 'Endpoint:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                            <div class="col-sm-2">
+                                {{ form_widget(form.endPoint, {'attr': {'class': 'form-control', 'placeholder': 'transmission/rpc'}}) }}
+                            </div>
+                            {{ form_label(form.authUsername, 'Username:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                            <div class="col-sm-2">
+                                {{ form_widget(form.authUsername, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            {{ form_label(form.authPassword, 'Password:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                            <div class="col-sm-2">
+                                {{ form_widget(form.authPassword, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-actions text-right">
+                            {{ form_widget(form.addClient, {'attr': {'class': 'btn btn-info'}}) }}
+                        </div>
+                        {{ form_rest(form) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

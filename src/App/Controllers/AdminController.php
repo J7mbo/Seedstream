@@ -36,24 +36,33 @@ class AdminController
      * Displays the the servers and clients page
      *
      * @param ServerRepository $serverRepository
-     * @param FormFactory      $formFactory
-     * @param ClientType       $clientFormType
      *
-     * @return array Servers / clients list and the add client form
+     * @return array Servers / clients list
      */
-    public function serversAction(
-        ServerRepository $serverRepository,
-        FormFactory $formFactory,
-        ClientType $clientFormType
-    )
+    public function serversAction(ServerRepository $serverRepository)
     {
-        $servers     = $serverRepository->findAll();
-        $formBuilder = $formFactory->createBuilder($clientFormType);
-        $form        = $formBuilder->getForm()->createView();
+        $servers = $serverRepository->findAll();
 
         return [
-            'servers' => $servers,
-            'form' => $form
+            'servers' => $servers
+        ];
+    }
+
+    /**
+     * Displays the add client form
+     *
+     * @param FormFactory $formFactory
+     * @param ClientType  $clientFormType
+     *
+     * @return array Add client form
+     */
+    public function clientFormAction(FormFactory $formFactory, ClientType $clientFormType)
+    {
+        $formBuilder = $formFactory->createBuilder($clientFormType);
+        $clientForm  = $formBuilder->getForm()->createView();
+
+        return [
+            'form' => $clientForm
         ];
     }
 
