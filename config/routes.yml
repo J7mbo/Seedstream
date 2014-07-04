@@ -18,6 +18,9 @@ routes:
   admin_servers:
     pattern:  /admin/servers
     defaults: { _controller: 'AdminController:serversAction', _template: 'admin/servers.html.twig' }
+  admin_servers_new_client_form:
+    pattern:  /admin/servers/new-client
+    defaults: { _controller: 'AdminController:clientFormAction', _template: 'admin/client-form.html.twig' }
   admin_servers_remove_client:
     pattern:  /admin/servers/remove-client
     defaults: { _controller: 'AdminController:removeClientAction' }
