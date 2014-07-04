@@ -44,10 +44,10 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
         ";
         // line 35
         $this->displayBlock('body', $context, $blocks);
-        // line 85
+        // line 96
         echo "        ";
         $this->displayBlock('scripts', $context, $blocks);
-        // line 93
+        // line 104
         echo "    </body>
 </html>";
     }
@@ -142,15 +142,16 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
             // line 44
             echo "                    <div class=\"page-content\">
                         <div class=\"page-content-inner\">
+
                             ";
-            // line 47
+            // line 48
             echo "                            <div class=\"page-header\">
                                 <div class=\"page-title\">
                                     <h3>
                                         ";
-            // line 50
-            $this->displayBlock('header_title', $context, $blocks);
             // line 51
+            $this->displayBlock('header_title', $context, $blocks);
+            // line 52
             echo "                                        <small>Welcome ";
             echo twig_escape_filter($this->env, twig_title_string_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "username")), "html", null, true);
             echo "</small>
@@ -158,32 +159,53 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
 
                                 </div>
                             </div>
+
                             ";
-            // line 57
+            // line 59
             echo "                            <div class=\"breadcrumb-line\">
                                 <ul class=\"breadcrumb\">
                                     <li><a href=\"";
-            // line 59
+            // line 61
             echo $this->env->getExtension('routing')->getPath("home");
             echo "\">Home</a></li>
                                     ";
-            // line 60
+            // line 62
             $this->displayBlock('breadcrumbs', $context, $blocks);
-            // line 61
+            // line 63
             echo "                                </ul>
                             </div>
 
                             ";
-            // line 65
+            // line 67
+            echo "                            ";
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["flashbag"]) ? $context["flashbag"] : $this->getContext($context, "flashbag")), "get", array(0 => "success"), "method"));
+            foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+                // line 68
+                echo "                                <div class=\"alert alert-success\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>
+                                    <i class=\"glyphicon glyphicon-ok-circle\"></i>
+                                    ";
+                // line 71
+                echo twig_escape_filter($this->env, (isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "html", null, true);
+                echo "
+                                </div>
+                            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 74
             echo "                            ";
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["flashbag"]) ? $context["flashbag"] : $this->getContext($context, "flashbag")), "get", array(0 => "message"), "method"));
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-                // line 66
-                echo "                                <div class=\"bg-info with-padding block-inner\">
+                // line 75
+                echo "                                <div class=\"alert alert-info\">
                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>
+                                    <i class=\"glyphicon glyphicon-info-sign\"></i>
                                     ";
-                // line 68
+                // line 78
                 echo twig_escape_filter($this->env, (isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "html", null, true);
                 echo "
                                 </div>
@@ -192,16 +214,17 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 71
+            // line 81
             echo "                            ";
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["flashbag"]) ? $context["flashbag"] : $this->getContext($context, "flashbag")), "get", array(0 => "error"), "method"));
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-                // line 72
-                echo "                                <div class=\"bg-error with-padding block-inner\">
+                // line 82
+                echo "                                <div class=\"alert alert-danger\">
                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>
+                                    <i class=\"glyphicon glyphicon-remove-circle\"></i>
                                     ";
-                // line 74
+                // line 85
                 echo twig_escape_filter($this->env, (isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "html", null, true);
                 echo "
                                 </div>
@@ -210,19 +233,19 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 77
+            // line 88
             echo "
                             ";
-            // line 79
+            // line 90
             echo "                            ";
             $this->displayBlock('content', $context, $blocks);
-            // line 80
+            // line 91
             echo "                        </div>
                     </div>
                 </div>
                 ";
         }
-        // line 84
+        // line 95
         echo "            ";
     }
 
@@ -246,46 +269,46 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
         echo "                    ";
     }
 
-    // line 50
+    // line 51
     public function block_header_title($context, array $blocks = array())
     {
     }
 
-    // line 60
+    // line 62
     public function block_breadcrumbs($context, array $blocks = array())
     {
     }
 
-    // line 79
+    // line 90
     public function block_content($context, array $blocks = array())
     {
     }
 
-    // line 85
+    // line 96
     public function block_scripts($context, array $blocks = array())
     {
-        // line 86
+        // line 97
         echo "            <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/jquery.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 87
+        // line 98
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 88
+        // line 99
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/base.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 89
+        // line 100
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/autobahn.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 90
+        // line 101
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/when.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 91
+        // line 102
         echo twig_escape_filter($this->env, $this->env->getExtension('entea_asset')->asset("js/websocket.js"), "html", null, true);
         echo "\"></script>
         ";
@@ -303,6 +326,6 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
 
     public function getDebugInfo()
     {
-        return array (  289 => 91,  285 => 90,  281 => 89,  277 => 88,  273 => 87,  268 => 86,  265 => 85,  260 => 79,  255 => 60,  250 => 50,  246 => 43,  243 => 42,  240 => 41,  236 => 39,  233 => 38,  230 => 37,  226 => 84,  220 => 80,  217 => 79,  214 => 77,  205 => 74,  201 => 72,  196 => 71,  187 => 68,  183 => 66,  178 => 65,  173 => 61,  171 => 60,  167 => 59,  163 => 57,  154 => 51,  152 => 50,  147 => 47,  143 => 44,  141 => 41,  138 => 40,  135 => 37,  132 => 36,  129 => 35,  124 => 15,  119 => 13,  114 => 12,  110 => 32,  97 => 24,  90 => 19,  87 => 18,  82 => 15,  79 => 14,  76 => 13,  74 => 12,  70 => 11,  66 => 10,  62 => 9,  59 => 8,  56 => 7,  51 => 93,  48 => 85,  46 => 35,  42 => 33,  40 => 7,  34 => 3,  32 => 2,  30 => 1,);
+        return array (  312 => 102,  304 => 100,  300 => 99,  296 => 98,  291 => 97,  288 => 96,  283 => 90,  278 => 62,  273 => 51,  269 => 43,  266 => 42,  263 => 41,  259 => 39,  253 => 37,  249 => 95,  243 => 91,  240 => 90,  237 => 88,  228 => 85,  223 => 82,  204 => 75,  199 => 74,  190 => 71,  185 => 68,  180 => 67,  175 => 63,  173 => 62,  169 => 61,  165 => 59,  155 => 52,  153 => 51,  148 => 48,  143 => 44,  141 => 41,  138 => 40,  135 => 37,  132 => 36,  129 => 35,  124 => 15,  119 => 13,  114 => 12,  110 => 32,  97 => 24,  87 => 18,  82 => 15,  79 => 14,  76 => 13,  74 => 12,  66 => 10,  62 => 9,  59 => 8,  56 => 7,  51 => 104,  48 => 96,  42 => 33,  32 => 2,  30 => 1,  317 => 104,  313 => 103,  308 => 101,  305 => 101,  297 => 96,  293 => 94,  289 => 91,  271 => 86,  256 => 38,  241 => 71,  238 => 70,  221 => 67,  218 => 81,  215 => 65,  209 => 78,  203 => 61,  200 => 60,  198 => 59,  195 => 58,  178 => 57,  171 => 56,  154 => 55,  149 => 52,  145 => 50,  136 => 48,  131 => 47,  125 => 44,  120 => 43,  118 => 42,  111 => 38,  104 => 34,  100 => 33,  95 => 31,  90 => 19,  73 => 27,  70 => 11,  61 => 18,  57 => 15,  54 => 14,  49 => 8,  46 => 35,  40 => 7,  34 => 3,  29 => 12,);
     }
 }
