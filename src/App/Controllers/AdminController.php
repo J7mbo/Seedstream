@@ -103,7 +103,7 @@ class AdminController
             $em->persist($server);
             $em->flush();
 
-            $session->getFlashBag()->add('message',
+            $session->getFlashBag()->add('success',
                 sprintf('Successfully removed %s client on port %s', $client->getType(), $client->getPort())
             );
         }
@@ -153,7 +153,7 @@ class AdminController
             $em->persist($client);
             $em->flush();
 
-            $session->getFlashBag()->add('message',
+            $session->getFlashBag()->add('success',
                 sprintf('Successfully added %s client on port %s', $client->getType(), $client->getPort())
             );
         }
