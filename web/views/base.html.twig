@@ -65,21 +65,21 @@
 
                             {# Flash messages #}
                             {% for message in flashbag.get('success') %}
-                                <div class="alert alert-success">
+                                <div class="alert alert-success block-inner">
                                     <button type="button" class="close" data-dismiss="alert">×</button>
                                     <i class="glyphicon glyphicon-ok-circle"></i>
                                     {{ message }}
                                 </div>
                             {% endfor %}
                             {% for message in flashbag.get('message') %}
-                                <div class="alert alert-info">
+                                <div class="alert alert-info block-inner">
                                     <button type="button" class="close" data-dismiss="alert">×</button>
                                     <i class="glyphicon glyphicon-info-sign"></i>
                                     {{ message }}
                                 </div>
                             {% endfor %}
                             {% for message in flashbag.get('error') %}
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger block-inner">
                                     <button type="button" class="close" data-dismiss="alert">×</button>
                                     <i class="glyphicon glyphicon-remove-circle"></i>
                                     {{ message }}
