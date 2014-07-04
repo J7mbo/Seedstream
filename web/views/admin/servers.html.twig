@@ -22,10 +22,6 @@
             <h5>Server Listing</h5>
             <p>
                 Here's a list of all your servers. Click on each one to view / hide associated clients.
-                You can delete / add clients at will.
-                <br />
-                If you add a new client, no downloads will be
-                associated with it until they are added within Seedstream.
             </p>
         </div>
 
@@ -95,6 +91,12 @@
                     </div>
                 </div>
             {% endfor %}
+        </div>
+
+        {# Action Buttons #}
+        <div class="col-sm-13 text-right">
+            <button class="btn btn-info text-right">Add Server</button>
+            <button class="btn btn-info text-right">Add Client</button>
         </div>
 
         <hr />
