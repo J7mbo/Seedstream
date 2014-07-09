@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Admin > New Server{% endblock %}
+
+{% block header_title %}New Server{% endblock %}
+
+{% block breadcrumbs %}
+    {% include("components/breadcrumbs/breadcrumbs.html.twig") with {'crumbs': [{'name': 'admin', 'url': 'admin' }, {'name': 'servers', 'url': 'admin_servers' }, {'name': 'new server', 'url': 'admin_servers_new_server_form'}]} %}
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-13">
+
+        {# Welcome Message #}
+        <div class="callout callout-info">
+            <h5>New Server Form</h5>
+            <p>
+                Here you can add a new server to the pool of available servers. Then you can add clients associated with them
+                using the <a href="{{ path('admin_servers_new_client_form') }}">Add Client</a> page.
+            </p>
+        </div>
+
+        {# Add new server form #}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h6 class="panel-title">
+                    <i class="icon-sidebar-button"></i>
+                    Add New Server
+                </h6>
+            </div>
+            <div class="panel-body">
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_errors(form) }}
+                        <div class="form-group">
+                            {{ form_label(form.ipAddress, 'IPAddress:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.ipAddress, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            {{ form_label(form.name, 'Name:', {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-2 form-actions text-right">
+                                {{ form_widget(form.addServer, {'attr': {'class': 'btn btn-info btn-block'}}) }}
+                            </div>
+                        </div>
+
+                        {{ form_rest(form) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
