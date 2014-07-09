@@ -25,13 +25,15 @@
         {# Server / Client Listing #}
         <div class="panel-group block">
             {% for server in servers %}
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" data-server-id="{{ server.id }}">
+                        {% if server.clients.count == 0 %}
+                            <button class="pull-right btn btn-danger delete-server">Delete Server</button>
+                        {% endif %}
                         <h6 class="panel-title">
                             <a data-toggle="collapse" href="#collapse-group{{ loop.index }}">
                                 <i class="icon-server"></i>
-                                IP Address: {{ server.ipAddress }}
-                                Status: {{ (server.isActive == 1) ? "Active" : "Inactive" }}
+                                {{ server }} | Status: {{ (server.isActive == 1) ? "Active" : "Inactive" }}
                             </a>
                         </h6>
                     </div>
@@ -76,7 +78,7 @@
                                                 </div>
                                                 <div class="btn-group">
                                                     <button class="btn btn-icon btn-danger delete-client">
-                                                        <a href=""><i class="icon icon-cross"></i></a>
+                                                        <a><i class="icon icon-cross"></i></a>
                                                     </button>
                                                 </div>
                                             </td>
@@ -101,5 +103,6 @@
 {% block scripts %}
     {{ parent() }}
     <script type="text/javascript"> var removeClientUrl = '{{ path('admin_servers_remove_client') }}'; </script>
+    <script type="text/javascript"> var removeServerUrl = '{{ path('admin_servers_remove_server') }}'; </script>
     <script src="{{ asset('js/servers.js') }}"></script>
 {% endblock %}

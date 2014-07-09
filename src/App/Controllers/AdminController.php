@@ -6,6 +6,7 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException,
     Symfony\Component\HttpFoundation\RedirectResponse,
     Symfony\Component\HttpFoundation\Session\Session,
     Symfony\Component\Routing\Generator\UrlGenerator,
+    Symfony\Component\HttpFoundation\Response,
     App\Model\Factory\RedirectResponseFactory,
     Symfony\Component\HttpFoundation\Request,
     App\Model\Repository\ClientRepository,
@@ -92,6 +93,7 @@ class AdminController
      * Requires a POST request with the 'id' parameter containing the client id
      *
      * @param Request          $request
+     * @param Response         $response
      * @param ClientRepository $clientRepository
      * @param EntityManager    $em
      * @param Session          $session
@@ -100,6 +102,7 @@ class AdminController
      */
     public function removeClientAction(
         Request                 $request,
+        Response                $response,
         ClientRepository        $clientRepository,
         EntityManager           $em,
         Session                 $session
@@ -121,29 +124,98 @@ class AdminController
                 sprintf("Couldn't delete client - please refresh and try again")
             );
         }
-
-        try
+        else
         {
-            /** @var Server $server */
-            $server = $client->getServer();
-            $server->removeClient($client);
-            $em->remove($client);
+            try
+            {
+                /** @var Server $server */
+                $server = $client->getServer();
+                $server->removeClient($client);
+                $em->remove($client);
 
-            $em->persist($server);
-            $em->flush();
+                $em->persist($server);
+                $em->flush();
 
-            $session->getFlashBag()->add('success',
-                sprintf('Successfully removed %s client on port %s', $client->getType(), $client->getPort())
-            );
+                $session->getFlashBag()->add('success',
+                    sprintf('Successfully removed %s client on port %s', $client->getType(), $client->getPort())
+                );
+            }
+            catch (\Exception $e)
+            {
+                $session->getFlashBag()->add('error',
+                    sprintf("Couldn't delete client - please refresh and try again")
+                );
+            }
         }
-        catch (\Exception $e)
+
+        return $response;
+    }
+
+    /**
+     * Hit when the user removes a server
+     *
+     * Requires a POST request with the 'id' parameter containing the client id
+     *
+     * @param Request          $request
+     * @param Response         $response
+     * @param ServerRepository $serverRepository
+     * @param EntityManager    $em
+     * @param Session          $session
+     *
+     * @return array
+     */
+    public function removeServerAction(
+        Request                 $request,
+        Response                $response,
+        ServerRepository        $serverRepository,
+        EntityManager           $em,
+        Session                 $session
+    )
+    {
+        if (!$request->request->has('id'))
         {
             $session->getFlashBag()->add('error',
-                sprintf("Couldn't delete client - please refresh and try again")
+                sprintf("Couldn't delete server - please refresh and try again")
             );
         }
 
-        return [];
+        $serverId = $request->request->get('id');
+
+        /** @var Server $server **/
+        if (($server = $serverRepository->find($serverId)) === null)
+        {
+            $session->getFlashBag()->add('error',
+                sprintf("Couldn't delete server - please refresh and try again")
+            );
+        }
+
+        if ($server->getClients()->count() > 0)
+        {
+            $session->getFlashBag()->add('error',
+                sprintf("Server still has clients - please delete these first before removing the server")
+            );
+        }
+        else
+        {
+            try
+            {
+                /** @var Server $server */
+                $em->remove($server);
+                $em->flush();
+
+                $session->getFlashBag()->add('success',
+                    sprintf('Successfully removed server: %s', $server)
+                );
+            }
+            catch (\Exception $e)
+            {
+                $session->getFlashBag()->add('error',
+                    sprintf("Couldn't delete server - please refresh and try again")
+                );
+            }
+        }
+
+        return $response;
     }
 
     /**

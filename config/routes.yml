@@ -28,6 +28,10 @@ routes:
     pattern:  /admin/servers/remove-client
     defaults: { _controller: 'AdminController:removeClientAction' }
     method:   POST
+  admin_servers_remove_server:
+    pattern:  /admin/servers/remove-server
+    defaults: { _controller: 'AdminController:removeServerAction' }
+    method:   POST
   admin_servers_add_client:
     pattern:  /admin/servers/add-client
     defaults: { _controller: 'AdminController:addClientAction' }
