@@ -21,6 +21,9 @@ routes:
   admin_servers_new_client_form:
     pattern:  /admin/servers/new-client
     defaults: { _controller: 'AdminController:clientFormAction', _template: 'admin/client-form.html.twig' }
+  admin_servers_new_server_form:
+    pattern:  /admin/servers/new-server
+    defaults: { _controller: 'AdminController:serverFormAction', _template: 'admin/server-form.html.twig' }
   admin_servers_remove_client:
     pattern:  /admin/servers/remove-client
     defaults: { _controller: 'AdminController:removeClientAction' }
@@ -28,4 +31,8 @@ routes:
   admin_servers_add_client:
     pattern:  /admin/servers/add-client
     defaults: { _controller: 'AdminController:addClientAction' }
+    method:   POST
+  admin_servers_add_server:
+    pattern:  /admin/servers/add-server
+    defaults: { _controller: 'AdminController:addServerAction' }
     method:   POST
