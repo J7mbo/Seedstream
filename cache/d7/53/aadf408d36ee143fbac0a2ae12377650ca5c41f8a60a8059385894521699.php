@@ -182,7 +182,7 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["flashbag"]) ? $context["flashbag"] : $this->getContext($context, "flashbag")), "get", array(0 => "success"), "method"));
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
                 // line 68
-                echo "                                <div class=\"alert alert-success\">
+                echo "                                <div class=\"alert alert-success block-inner\">
                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>
                                     <i class=\"glyphicon glyphicon-ok-circle\"></i>
                                     ";
@@ -201,7 +201,7 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["flashbag"]) ? $context["flashbag"] : $this->getContext($context, "flashbag")), "get", array(0 => "message"), "method"));
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
                 // line 75
-                echo "                                <div class=\"alert alert-info\">
+                echo "                                <div class=\"alert alert-info block-inner\">
                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>
                                     <i class=\"glyphicon glyphicon-info-sign\"></i>
                                     ";
@@ -220,7 +220,7 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["flashbag"]) ? $context["flashbag"] : $this->getContext($context, "flashbag")), "get", array(0 => "error"), "method"));
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
                 // line 82
-                echo "                                <div class=\"alert alert-danger\">
+                echo "                                <div class=\"alert alert-danger block-inner\">
                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>
                                     <i class=\"glyphicon glyphicon-remove-circle\"></i>
                                     ";
@@ -326,6 +326,6 @@ class __TwigTemplate_d753aadf408d36ee143fbac0a2ae12377650ca5c41f8a60a80593858945
 
     public function getDebugInfo()
     {
-        return array (  312 => 102,  304 => 100,  300 => 99,  296 => 98,  291 => 97,  288 => 96,  283 => 90,  278 => 62,  273 => 51,  269 => 43,  266 => 42,  263 => 41,  259 => 39,  253 => 37,  249 => 95,  243 => 91,  240 => 90,  237 => 88,  228 => 85,  223 => 82,  204 => 75,  199 => 74,  190 => 71,  185 => 68,  180 => 67,  175 => 63,  173 => 62,  169 => 61,  165 => 59,  155 => 52,  153 => 51,  148 => 48,  143 => 44,  141 => 41,  138 => 40,  135 => 37,  132 => 36,  129 => 35,  124 => 15,  119 => 13,  114 => 12,  110 => 32,  97 => 24,  87 => 18,  82 => 15,  79 => 14,  76 => 13,  74 => 12,  66 => 10,  62 => 9,  59 => 8,  56 => 7,  51 => 104,  48 => 96,  42 => 33,  32 => 2,  30 => 1,  317 => 104,  313 => 103,  308 => 101,  305 => 101,  297 => 96,  293 => 94,  289 => 91,  271 => 86,  256 => 38,  241 => 71,  238 => 70,  221 => 67,  218 => 81,  215 => 65,  209 => 78,  203 => 61,  200 => 60,  198 => 59,  195 => 58,  178 => 57,  171 => 56,  154 => 55,  149 => 52,  145 => 50,  136 => 48,  131 => 47,  125 => 44,  120 => 43,  118 => 42,  111 => 38,  104 => 34,  100 => 33,  95 => 31,  90 => 19,  73 => 27,  70 => 11,  61 => 18,  57 => 15,  54 => 14,  49 => 8,  46 => 35,  40 => 7,  34 => 3,  29 => 12,);
+        return array (  312 => 102,  308 => 101,  304 => 100,  300 => 99,  296 => 98,  291 => 97,  288 => 96,  283 => 90,  278 => 62,  273 => 51,  269 => 43,  266 => 42,  263 => 41,  259 => 39,  256 => 38,  253 => 37,  249 => 95,  243 => 91,  240 => 90,  237 => 88,  228 => 85,  223 => 82,  218 => 81,  209 => 78,  204 => 75,  199 => 74,  190 => 71,  185 => 68,  180 => 67,  175 => 63,  173 => 62,  169 => 61,  165 => 59,  155 => 52,  153 => 51,  148 => 48,  143 => 44,  141 => 41,  138 => 40,  135 => 37,  132 => 36,  129 => 35,  124 => 15,  119 => 13,  114 => 12,  110 => 32,  97 => 24,  90 => 19,  87 => 18,  82 => 15,  79 => 14,  76 => 13,  74 => 12,  70 => 11,  66 => 10,  62 => 9,  59 => 8,  56 => 7,  51 => 104,  48 => 96,  46 => 35,  42 => 33,  40 => 7,  34 => 3,  32 => 2,  30 => 1,);
     }
 }
