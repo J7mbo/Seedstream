@@ -196,6 +196,19 @@ class AdminController
         return $redirectResponseFactory->build($urlGenerator->generate('admin_servers'));
     }
 
+    /**
+     * Hit when the user submits a new server using the ServerType form
+     *
+     * @param UrlGenerator            $urlGenerator
+     * @param RedirectResponseFactory $redirectResponseFactory
+     * @param Request                 $request
+     * @param ServerType              $serverFormType
+     * @param FormFactory             $formFactory
+     * @param Session                 $session
+     * @param EntityManager           $em
+     *
+     * @return RedirectResponse
+     */
     public function addServerAction(
         UrlGenerator            $urlGenerator,
         RedirectResponseFactory $redirectResponseFactory,
