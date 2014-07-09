@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 
-use Symfony\Component\HttpFoundation\RedirectResponse,
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException,
+    Symfony\Component\HttpFoundation\RedirectResponse,
     Symfony\Component\HttpFoundation\Session\Session,
     Symfony\Component\Routing\Generator\UrlGenerator,
     App\Model\Factory\RedirectResponseFactory,
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse,
     Symfony\Component\Form\FormFactory,
     Doctrine\ORM\EntityManager,
     App\Model\Form\ClientType,
+    App\Model\Form\ServerType,
     App\Model\Entity\Server,
     App\Model\Entity\Client;
 
@@ -63,6 +65,24 @@ class AdminController
 
         return [
             'form' => $clientForm
+        ];
+    }
+
+    /**
+     * Displays the add server form
+     *
+     * @param FormFactory $formFactory
+     * @param ServerType  $serverFormType
+     *
+     * @return array Add server form
+     */
+    public function serverFormAction(FormFactory $formFactory, ServerType $serverFormType)
+    {
+        $formBuilder = $formFactory->createBuilder($serverFormType);
+        $serverForm  = $formBuilder->getForm()->createView();
+
+        return [
+            'form' => $serverForm
         ];
     }
 
@@ -174,5 +194,65 @@ class AdminController
         }
 
         return $redirectResponseFactory->build($urlGenerator->generate('admin_servers'));
+    }
+
+    public function addServerAction(
+        UrlGenerator            $urlGenerator,
+        RedirectResponseFactory $redirectResponseFactory,
+        Request                 $request,
+        ServerType              $serverFormType,
+        FormFactory             $formFactory,
+        Session                 $session,
+        EntityManager           $em
+    )
+    {
+        $formBuilder = $formFactory->createBuilder($serverFormType);
+
+        $form = $formBuilder->getForm();
+
+        $url = $urlGenerator->generate('admin_servers_new_server_form');
+
+        try
+        {
+            $form->handleRequest($request);
+
+            if ($form->isValid())
+            {
+                /** @var Server $server **/
+                $server = $form->getData();
+                $em->persist($server);
+
+                try
+                {
+                    $em->flush();
+
+                    $session->getFlashBag()->add('success',
+                        sprintf('Successfully added server: %s', $server)
+                    );
+
+                    $url = $urlGenerator->generate('admin_servers');
+                }
+                catch (UniqueConstraintViolationException $exception)
+                {
+                    $session->getFlashBag()->add('error',
+                        sprintf("Couldn't add server: %s, a server with this IP Address already exists", $server)
+                    );
+                }
+            }
+            else
+            {
+                $session->getFlashBag()->add('error',
+                    sprintf("Couldn't add server - please refresh and try again")
+                );
+            }
+        }
+        catch (\InvalidArgumentException $e)
+        {
+            $session->getFlashBag()->add('error',
+                sprintf("Couldn't add server - it did not have a valid IP Address")
+            );
+        }
+
+        return $redirectResponseFactory->build($url);
     }
 } 
